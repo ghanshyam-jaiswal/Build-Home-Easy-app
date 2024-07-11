@@ -1,0 +1,82 @@
+.adminAsideBar{
+    /* border: 1px solid; */
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3%;
+    padding-top: 3%;
+    border-right: 1px solid;
+    /* background-color: rgb(238, 227, 227); */
+}
+.adminAsideBar h1{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.6vw;
+    margin-bottom: 5%;
+    /* border: 1px solid; */
+}
+.adminAsideBar a{
+    font-size: 1.1vw;
+    text-decoration: none;
+    width:100%;
+    height: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+}   
+.adminAsideBar a:hover{
+    color: rgb(0, 0, 0);
+    background-color: rgb(196, 196, 238);
+    /* height: 6%; */
+}
+
+.adminAsideBar a.active{
+    color: rgb(255, 255, 255);
+    background-color: rgb(141, 141, 238);
+    width:100%;
+    /* height: 6%; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* border: 1px solid; */
+    /* font-weight: bold; */
+}
+
+.adminAsideBar .dropdown {
+    position: relative;
+    display: inline-block;
+    /* border: 1px solid; */
+    width:100%;
+    height: 6%;
+    color: black;
+
+  }
+  .adminAsideBar .dropdown a{
+    width:100%;
+    height: 100%;
+  }
+  
+  .adminAsideBar .dropdown-content {
+    display: none;
+    position: absolute;
+    /* background-color: #f9f9f9; */
+    /* color: black; */
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 0px 0px;
+    z-index: 1;
+  }
+  .adminAsideBar .dropdown-content a{
+    /* padding: 2%; */
+    height: 2em;
+    font-size: 1vw;
+    /* margin-bottom: 3%; */
+  }
+  
+  .adminAsideBar .dropdown:hover .dropdown-content {
+    display: block;
+  }
