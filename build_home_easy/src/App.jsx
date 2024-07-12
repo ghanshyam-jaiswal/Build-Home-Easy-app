@@ -7,15 +7,14 @@ import Admin from './components/Admin'
 import AdminAllItems from './components/AdminAllItems'
 import AdminUpdateItem from './components/AdminUpdateItem'
 import AdminAddItem from './components/AdminAddItem'
+import AdminAddChildItem from './components/AdminAddChildItem'
 import AdminUsers from './components/AdminUsers'
 import AdminOrders from './components/AdminOrders'
 import AdminContact from './components/AdminContact'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminEditItem from './components/AdminEditItem'
-
-
-
+import AdminViewItem from './components/AdminViewItem'
 
 const App = () => {
   return (
@@ -33,6 +32,8 @@ const App = () => {
               <Route path="/admin/editItem" element={<AdminEditItem/>} ></Route>
               <Route path="/admin/updateItem/:id" element={<AdminUpdateItem/>} ></Route>
               <Route path="/admin/addItem" element={<AdminAddItem/>} ></Route>
+              <Route path="/admin/viewItem" element={<AdminViewItem/>} ></Route>
+              <Route path="/admin/addChildItem" element={<AdminAddChildItem/>} ></Route>
               <Route path="/admin/users" element={<AdminUsers/>} ></Route>
               <Route path="/admin/orders" element={<AdminOrders/>} ></Route>
               <Route path="/admin/contact" element={<AdminContact/>} ></Route>

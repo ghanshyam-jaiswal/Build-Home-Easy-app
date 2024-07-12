@@ -26,9 +26,6 @@ const AdminAllItems = () => {
   
         if (response.data.rData.rMessage === 'Successful') {
           setList(response.data.rData.users);
-          // console.log("Fetched product List successfully");
-          // console.log("product List ",list);
-  
         } else {
           console.log("Failed to fetch  Product List");
         }
@@ -52,15 +49,15 @@ const AdminAllItems = () => {
             toast.error("Failed")
           }
           else if(response.data.rData.rMessage==='DELETE SUCCESSFULLY.'){
-          // localStorage.removeItem('user')
-          // toast.success("Delete Successful")
-        //   console.log("deleted successful")
           toast.success("Deleted Successful")
           fetchProducts();
-          // navigate("/")
           }
         }
-      }
+     }
+
+     let handleEdit=(details)=>{
+      navigate("/admin/editItem",{state:{details}})
+    }
 
   return (
     <div className='adminAllProducts'>
@@ -71,52 +68,23 @@ const AdminAllItems = () => {
                 <th>Id</th>
                 <th>Product Image</th>
                 <th>Name</th>
-                {/* <th>Price</th>
-                <th>Demo Images</th>
-                <th>Demo Text</th> */}
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-                {list.map((product,index) => (
+                {list.map((item,index) => (
                   <tr key={index}>
-                      <td>{product.id}</td>
-                      {/* <td><img src={product.productImage} alt="image" className='profile' style={{width:'30%',height:'10%',border:'1px solid'}}/></td> */}
-                      <td><img src={product.image} alt="image" className='profile'/></td>
-                      <td>{product.name}</td>
-                      {/* <td>Rs. {product.productPrice}</td> */}
-                      {/* <td>{product.product || '--'}</td> */}
-                      {/* <td>{user.productDemoImages || '--'}</td> */}
-                      {/* <td> 
-                        {product.productDemoImages && Array.isArray(JSON.parse(product.productDemoImages)) ? (
-                          <div className="imageList">
-                            {JSON.parse(product.productDemoImages).map((imageData, idx) => (
-                              <img key={idx} src={imageData} alt={`demo ${idx}`} style={{ width: '44%', height: '44%' ,boxShadow:'0 0 2px'}} />
-                            ))}
-                          </div>
-                          ) : ('--')
-                        }
-                      </td> */}
-                      {/* <td> 
-                        {product.productDemoText && Array.isArray(JSON.parse(product.productDemoText)) ? (
-                          <ul style={{listStyle: 'none'}}>
-                            {JSON.parse(product.productDemoText).map((item, idx) => (
-                              <li key={idx} >{item}</li>
-                            ))}
-                          </ul>
-                          ) : ('--')
-                        }
-                      </td> */}
+                      <td>{item.id}</td>
+                      <td><img src={item.image} alt="image" className='profile'/></td>
+                      <td>{item.name}</td>
                       <td>
                         <div className='action'>
-                          {/* <button onClick={()=>navigate(`/admin/updateproduct/${product.id}`)} className='delete-btn update'>Update <BiEdit style={{fontSize:'1vw'}} /></button> */}
-                          <button onClick={()=>navigate(`/admin/updateproduct/${product.id}`)} className='view-btn'>View</button>
-                          <button onClick={()=>navigate("/admin/editItem")} className='edit-btn'>Edit</button>
-                          {/* <button className='delete-btn' onClick={()=>handleDeleteProduct(product.id)} >Delete <MdDeleteForever style={{fontSize:'1.1vw'}}/></button> */}
-                          <button onClick={()=>handleDeleteItem(product.id)} className='delete-btn'  >Delete</button>
+                      
+                          <button onClick={()=>navigate("/admin/viewItem",{state:{item}})} className='view-btn'>View</button>
+                          <button onClick={()=>handleEdit(item)} className='edit-btn'>Edit</button>
+                          <button onClick={()=>handleDeleteItem(item.id)} className='delete-btn'  >Delete</button>
                         </div>
                       </td>
-                      {/* <td><button onClick={()=>handleDeleteUser(user.user_id)} className='delete-btn'>Delete</button></td> */}
                     </tr>
                 ))
                 }
@@ -126,7 +94,6 @@ const AdminAllItems = () => {
         </div>
         <div className='addProduct' >
           <button onClick={()=>navigate("/admin/addItem")}>Add New Item</button>
-          {/* <Link to={'/admin/addproduct'}>Add New Product</Link> */}
         </div>
 
     </div>

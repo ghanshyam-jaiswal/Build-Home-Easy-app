@@ -45,9 +45,43 @@ const AdminAddItem = () => {
         }
     };
 
+    let isValidate=()=>{
+
+      let proceed=true
+      let message='Enter';
+  
+      if(itemImage===''|| itemImage===null){
+        proceed=false
+        message+=' Image'
+        
+      }
+      if(itemName===''|| itemName===null){
+        proceed=false
+        message+=' Name'
+        
+      }
+      if(childItemImage===''|| childItemImage===null){
+        proceed=false
+        message+=' Item Image'
+      }
+      if(childItemDetails.childItemName===''|| childItemDetails.childItemName===null){
+        proceed=false
+        message+=' Item Name'
+      }
+      if(childItemDetails.childItemPrice===''|| childItemDetails.childItemPrice===null){
+        proceed=false
+        message+=' Price'
+      }
+      if(!proceed){
+        // alert(message)
+        toast.info(message)
+      }
+      return proceed
+    }
+
     let handleUpload= async (e)=>{
         e.preventDefault()
-        // if (!isValidate()) return;
+        if (!isValidate()) return;
         // console.log("details",details)
         let payload={
           eventID: "1001",

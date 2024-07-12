@@ -269,6 +269,19 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await productService.AddItem(rData));
                 }
             });
+
+            e.MapPost("homeAddChildItem",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received get users request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // addProduct
+                {
+                    // Call the GetAllUsers method directly and return its result as JSON response
+                    await http.Response.WriteAsJsonAsync(await productService.AddChildItem(rData));
+                }
+            });
             
              e.MapPost("homeGetAllItems",
             [AllowAnonymous] async (HttpContext http) =>
@@ -310,14 +323,14 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await productService.GetProductByName(rData));
             });
 
-             e.MapPost("updateProductById",
+             e.MapPost("homeUpdateItemById",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
                 requestData rData = JsonSerializer.Deserialize<requestData>(body);
                 Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
                 if (rData.eventID == "1001") // contact
-                    await http.Response.WriteAsJsonAsync(await productService.UpdateProductById(rData));
+                    await http.Response.WriteAsJsonAsync(await productService.UpdateItemById(rData));
             });
 
              e.MapPost("homeDeleteItem",

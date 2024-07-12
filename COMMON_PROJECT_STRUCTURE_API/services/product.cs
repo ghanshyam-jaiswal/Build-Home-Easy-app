@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Text.Json;
+using System.Data;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -66,6 +67,43 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                     resData.rData["rMessage"] = "Added Successful";
                 }
+            }
+            catch (Exception ex)
+            {
+                resData.rData["rMessage"] = "An error occurred: " + ex.Message;
+            }
+            return resData;
+        }
+
+        public async Task<responseData> AddChildItem(requestData rData)
+        {
+            responseData resData = new responseData();
+            try
+            {
+                   var sq = @"UPDATE pc_student.BuildHomeEasy
+                       SET items = JSON_ARRAY_APPEND(items, '$', JSON_OBJECT('itemName', @itemName, 'itemImage', @itemImage, 'itemPrice', @itemPrice))
+                       WHERE id = @id";
+
+                    MySqlParameter[] updateParams = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@id", rData.addInfo["id"]),
+                        new MySqlParameter("@itemName", rData.addInfo["itemName"]),
+                        new MySqlParameter("@itemImage", rData.addInfo["itemImage"]),
+                        new MySqlParameter("@itemPrice", rData.addInfo["itemPrice"]),
+                    };
+                    var insertResult = ds.executeSQL(sq, updateParams);
+                  
+                    resData.rData["rMessage"] = "Added Successful";
+
+                    // if (insertResult > 0)
+                    // {
+                    //     resData.rData["rMessage"] = "Added Successful";
+                    // }
+                    // else
+                    // {
+                    //     resData.rData["rMessage"] = "Update failed. No rows affected.";
+                    // }
+                
             }
             catch (Exception ex)
             {
@@ -340,53 +378,61 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
         }
 
 
-        public async Task<responseData> UpdateProductById(requestData rData)
+        public async Task<responseData> UpdateItemById(requestData rData)
         {
             responseData resData = new responseData();
 
             try
             {
-                // Your update query
-                var query = @"UPDATE pc_student.RepairStoreProduct
-                            SET   productImage = @productImage, 
-                                  productName = @productName,
-                                  productPrice = @productPrice,
-                                  productDemoImages = @productDemoImages, 
-                                  productDemoText = @productDemoText
-                           WHERE id = @id";
-
-                // Your parameters
+                var query = @"SELECT * FROM pc_student.BuildHomeEasy WHERE name=@name AND id != @id";
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-
-                    new MySqlParameter("@id", rData.addInfo["id"]),
-                    new MySqlParameter("@productImage", rData.addInfo["productImage"]),
-                    new MySqlParameter("@productName", rData.addInfo["productName"]),
-                    new MySqlParameter("@productPrice", rData.addInfo["productPrice"]),
-                    new MySqlParameter("@productDemoImages", rData.addInfo["productDemoImages"]),
-                    new MySqlParameter("@productDemoText", rData.addInfo["productDemoText"]),
+                    new MySqlParameter("@name", rData.addInfo["name"]),
+                    new MySqlParameter("@id", rData.addInfo["id"])
                 };
-
-                // Condition to execute the update query
-                bool shouldExecuteUpdate = true;
-
-                if (shouldExecuteUpdate)
+                var dbData = ds.executeSQL(query, myParam);
+                
+                if (dbData[0].Count() > 0)
                 {
-                    // int rowsAffected = ds.ExecuteUpdateSQL(query, myParam);
-                    int rowsAffected = ds.ExecuteUpdateSQL(query, myParam);
-
-                    if (rowsAffected > 0)
-                    {
-                        resData.rData["rMessage"] = "UPDATE SUCCESSFULLY";
-                    }
-                    else
-                    {
-                        resData.rData["rMessage"] = "No rows affected. Update failed.";
-                    }
+                    resData.rData["rMessage"] = "Duplicate Credentials";
                 }
                 else
                 {
-                    resData.rData["rMessage"] = "Condition not met. Update query not executed.";
+                    var updateQuery  = @"UPDATE pc_student.BuildHomeEasy
+                            SET name = @name, 
+                                image = @image
+                            WHERE id = @id";
+
+                    MySqlParameter[] updateParams  = new MySqlParameter[]
+                    {
+
+                        new MySqlParameter("@id", rData.addInfo["id"]),
+                        new MySqlParameter("@name", rData.addInfo["name"]),
+                        new MySqlParameter("@image", rData.addInfo["image"]),
+                        // new MySqlParameter("@items", rData.addInfo["items"])
+
+                    
+                    };
+
+                    bool shouldExecuteUpdate = true;
+
+                    if (shouldExecuteUpdate)
+                    {
+                        int rowsAffected = ds.ExecuteUpdateSQL(updateQuery , updateParams );
+
+                        if (rowsAffected > 0)
+                        {
+                            resData.rData["rMessage"] = "UPDATE SUCCESSFULLY";
+                        }
+                        else
+                        {
+                            resData.rData["rMessage"] = "No rows affected. Update failed.";
+                        }
+                    }
+                    else
+                    {
+                        resData.rData["rMessage"] = "Condition not met. Update query not executed.";
+                    }
                 }
             }
             catch (Exception ex)
