@@ -35,6 +35,7 @@ const AdminAllItems = () => {
     };
 
     let handleDeleteItem = async (dataToBeDelete)=> {
+      console.log("dataToBeDelete id : ",dataToBeDelete)
         let confirm=window.confirm("Are You Sure")
         if(confirm){
           let payload={
@@ -49,8 +50,23 @@ const AdminAllItems = () => {
             toast.error("Failed")
           }
           else if(response.data.rData.rMessage==='DELETE SUCCESSFULLY.'){
-          toast.success("Deleted Successful")
-          fetchProducts();
+            // toast.success("Deleted Successful")
+            let payload={
+              eventID: "1001",
+              addInfo: {
+                itemId: dataToBeDelete,
+              }
+            }
+            const response2 = await axios.post('http://localhost:5164/homeDeleteChildItem2', payload);
+            // console.log(response2)
+            if(response2.data.rData.rMessage==='No rows affected. Delete failed.'){
+              toast.error("Failed")
+            }
+            else if(response2.data.rData.rMessage==='DELETE SUCCESSFULLY.'){
+              toast.success("Deleted Successful")
+              fetchProducts();
+            }
+            // fetchProducts();
           }
         }
      }

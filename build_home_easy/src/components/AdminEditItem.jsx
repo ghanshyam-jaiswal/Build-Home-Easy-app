@@ -77,7 +77,7 @@ const AdminEditItem = () => {
       toast.success("Product Added Successful")
       navigate("/admin/allItems")
     }
-}
+  }
 
   return (
     <div className="adminEditItem">

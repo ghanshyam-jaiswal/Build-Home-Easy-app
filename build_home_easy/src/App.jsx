@@ -15,6 +15,7 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminEditItem from './components/AdminEditItem'
 import AdminViewItem from './components/AdminViewItem'
+import AdminEditChildItem from './components/AdminEditChildItem'
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
               <Route path="/admin/addItem" element={<AdminAddItem/>} ></Route>
               <Route path="/admin/viewItem" element={<AdminViewItem/>} ></Route>
               <Route path="/admin/addChildItem" element={<AdminAddChildItem/>} ></Route>
+              <Route path="/admin/editChildItem" element={<AdminEditChildItem/>} ></Route>
               <Route path="/admin/users" element={<AdminUsers/>} ></Route>
               <Route path="/admin/orders" element={<AdminOrders/>} ></Route>
               <Route path="/admin/contact" element={<AdminContact/>} ></Route>

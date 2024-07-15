@@ -270,19 +270,16 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 }
             });
 
-            e.MapPost("homeAddChildItem",
+             e.MapPost("homeGetItemByName",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
                 requestData rData = JsonSerializer.Deserialize<requestData>(body);
-                Console.WriteLine($"Received get users request: {JsonSerializer.Serialize(rData)}");
-                if (rData.eventID == "1001") // addProduct
-                {
-                    // Call the GetAllUsers method directly and return its result as JSON response
-                    await http.Response.WriteAsJsonAsync(await productService.AddChildItem(rData));
-                }
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.GetItemByName(rData));
             });
-            
+
              e.MapPost("homeGetAllItems",
             [AllowAnonymous] async (HttpContext http) =>
             {
@@ -291,36 +288,6 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
                 if (rData.eventID == "1001") // contact
                     await http.Response.WriteAsJsonAsync(await productService.GetAllItems(rData));
-            });
-
-             e.MapPost("getAllProductName",
-            [AllowAnonymous] async (HttpContext http) =>
-            {
-                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
-                requestData rData = JsonSerializer.Deserialize<requestData>(body);
-                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
-                if (rData.eventID == "1001") // contact
-                    await http.Response.WriteAsJsonAsync(await productService.GetAllProductName(rData));
-            });
-
-             e.MapPost("getProductById",
-            [AllowAnonymous] async (HttpContext http) =>
-            {
-                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
-                requestData rData = JsonSerializer.Deserialize<requestData>(body);
-                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
-                if (rData.eventID == "1001") // contact
-                    await http.Response.WriteAsJsonAsync(await productService.GetProductById(rData));
-            });
-
-             e.MapPost("getProductByName",
-            [AllowAnonymous] async (HttpContext http) =>
-            {
-                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
-                requestData rData = JsonSerializer.Deserialize<requestData>(body);
-                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
-                if (rData.eventID == "1001") // contact
-                    await http.Response.WriteAsJsonAsync(await productService.GetProductByName(rData));
             });
 
              e.MapPost("homeUpdateItemById",
@@ -342,6 +309,72 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 if (rData.eventID == "1001") // contact
                     await http.Response.WriteAsJsonAsync(await productService.DeleteItem(rData));
             });
+
+            e.MapPost("homeAddChildItem",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received get users request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // addProduct
+                {
+                    // Call the GetAllUsers method directly and return its result as JSON response
+                    await http.Response.WriteAsJsonAsync(await productService.AddChildItem(rData));
+                }
+            });
+
+             e.MapPost("homeGetAllChildItemsById",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.GetAllChildItemsById(rData));
+            });
+
+             e.MapPost("homeUpdateChildItemById",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.UpdateChildItemById(rData));
+            });
+
+             e.MapPost("homeDeleteChildItem",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.DeleteChildItem(rData));
+            });
+
+             e.MapPost("homeDeleteChildItem2",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.DeleteChildItem2(rData));
+            });
+
+             e.MapPost("getProductById",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.GetProductById(rData));
+            });
+
+            
+            
 
             e.MapPost("updateById",
             [AllowAnonymous] async (HttpContext http) =>

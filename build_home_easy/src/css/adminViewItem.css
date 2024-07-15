@@ -4,13 +4,35 @@
     /* border: 1px solid brown; */
     font-size: 0.9vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.adminViewItem .parentDetails{
+  width: 90%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  /* border: 1px solid brown; */
+  box-shadow: 0px 0px 10px rgb(223, 201, 201);
+
+}
+.adminViewItem .parentDetails img{
+  width: 9%;
+  height: 100%;
+  /* border: 1px solid brown; */
+
+}
+.adminViewItem .parentDetails h2{
+  /* border: 1px solid brown; */
+  /* width: 9%;
+  height: 100%; */
 }
 .adminViewItem .tableContainer {
-    width: 85%;
-    height: 85%;
+    width: 90%;
+    height: 80%;
     box-shadow: 0px 0px 10px rgb(223, 201, 201);
     /* padding: 2%; */
     overflow-y: auto;
@@ -164,15 +186,27 @@
     text-align: right;
   }
   .adminViewItem .addProduct button{
-    width: 10%;
+    width: 8%;
     height: 100%;
     border-radius: 7px;
     border: none;
-    background-color: rgb(130, 141, 243);
     font-weight: bold;
     font-size: 0.7vw;
+    margin-right: 2%;
   }
-  .adminViewItem .addProduct button:hover{
+  
+  .adminViewItem .addProduct .back{
+    background-color: rgb(194, 197, 223);
+
+  }
+  .adminViewItem .addProduct .back:hover{
+    background-color: rgb(169, 172, 202);
+
+  }
+  .adminViewItem .addProduct .add{
+    background-color: rgb(140, 150, 241);
+  }
+  .adminViewItem .addProduct .add:hover{
     background-color: rgb(113, 126, 243);
 
   }

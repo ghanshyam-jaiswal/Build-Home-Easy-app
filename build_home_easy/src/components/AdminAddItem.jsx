@@ -55,20 +55,20 @@ const AdminAddItem = () => {
         message+=' Image'
         
       }
-      if(itemName===''|| itemName===null){
+      else if(itemName===''|| itemName===null){
         proceed=false
         message+=' Name'
         
       }
-      if(childItemImage===''|| childItemImage===null){
+      else if(childItemImage===''|| childItemImage===null){
         proceed=false
         message+=' Item Image'
       }
-      if(childItemDetails.childItemName===''|| childItemDetails.childItemName===null){
+      else if(childItemDetails.childItemName===''|| childItemDetails.childItemName===null){
         proceed=false
         message+=' Item Name'
       }
-      if(childItemDetails.childItemPrice===''|| childItemDetails.childItemPrice===null){
+      else if(childItemDetails.childItemPrice===''|| childItemDetails.childItemPrice===null){
         proceed=false
         message+=' Price'
       }
@@ -82,19 +82,11 @@ const AdminAddItem = () => {
     let handleUpload= async (e)=>{
         e.preventDefault()
         if (!isValidate()) return;
-        // console.log("details",details)
         let payload={
           eventID: "1001",
           addInfo: {
             name: itemName,
             image: itemImage,
-            items: [
-                {
-                    itemName:childItemDetails.childItemName,
-                    itemImage:childItemImage,
-                    itemPrice:childItemDetails.childItemPrice
-                }
-            ]
           }
         }
         const response = await axios.post('http://localhost:5164/homeAddItem', payload);
@@ -103,13 +95,46 @@ const AdminAddItem = () => {
                   toast.error("Invalid Product Price")
           }
           if(response.data.rData.rMessage==='Duplicate Credentials'){
-                  toast.error("Already Exists")
+                  toast.error("Already Exists Item")
           }
           else if(response.data.rData.rMessage==='Added Successful'){
-          // localStorage.removeItem('user')
-          toast.success("Product Added Successful")
-        //   navigate("/admin/allproducts")
-        }
+              const response2 = await axios.post('http://localhost:5164/homeGetItemByName', {
+                eventID: "1001",
+                addInfo: {
+                  name: itemName,
+                 }}
+              );
+              console.log("response2",response2)
+              if(response2.data.rData.rMessage==='Database query returned null'){
+                      toast.error("Invalid ")
+              }
+              if(response2.data.rData.rMessage==='Duplicate Credentials'){
+                      toast.error("Already Exists")
+              }
+              else if(response2.data.rData.rMessage==='Successful'){
+                  let selectedId=response2.data.rData.users[0].id
+                  let payload3={
+                    eventID: "1001",
+                    addInfo: {
+                      itemId:selectedId,
+                      image:childItemImage,
+                      name: childItemDetails.childItemName,
+                      price:childItemDetails.childItemPrice
+                     }}
+                     console.log("payload3",payload3)
+                  const response3 = await axios.post('http://localhost:5164/homeAddChildItem',payload3);
+                  console.log("response3",response3)
+                  if(response3.data.rData.rMessage==='Duplicate Credentials'){
+                          toast.error("Already Exists Child Item")
+                  }
+                  else if(response3.data.rData.rMessage==='Added Successful'){
+                      // let selectedId=response2.data.rData.users[0].id
+                      toast.success("Added Successful")
+                      navigate('/admin/allItems')
+                  }
+              }
+            
+          }
     }
 
     let handleClear=()=>{

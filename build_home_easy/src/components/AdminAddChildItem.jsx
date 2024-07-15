@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "../css/adminAddChildItem.css"
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const adminAddChildItem = () => {
 
@@ -34,12 +35,12 @@ const adminAddChildItem = () => {
           message+=' Image'
           
         }
-        if(itemName===''|| itemName===null){
+        else if(itemName===''|| itemName===null){
           proceed=false
           message+=' Name'
           
         }
-        if(itemPrice===''|| itemPrice===null){
+        else if(itemPrice===''|| itemPrice===null){
           proceed=false
           message+=' Price'
         }
@@ -50,10 +51,30 @@ const adminAddChildItem = () => {
         return proceed
     }
 
-    let  handleUpload = (e)=>{
-        // console.log("details",itemName,itemPrice,itemImage)
+    let  handleUpload = async (e)=>{
         e.preventDefault()
         if (!isValidate()) return;
+        // console.log("details",itemName,itemPrice,itemImage)
+        let payload={
+          eventID: "1001",
+          addInfo: {
+            itemId:item.id,
+            image:itemImage,
+            name: itemName,
+            price:itemPrice
+           }}
+          //  console.log("payload3",payload3)
+        const response = await axios.post('http://localhost:5164/homeAddChildItem',payload);
+        console.log("response",response)
+        if(response.data.rData.rMessage==='Duplicate Credentials'){
+                toast.error("Already Exists Child Item")
+        }
+        else if(response.data.rData.rMessage==='Added Successful'){
+            // let selectedId=response2.data.rData.users[0].id
+            toast.success("Added Successful")
+            navigate('/admin/viewItem',{state:{item}})
+        }
+
         
     }
 
