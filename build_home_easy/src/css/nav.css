@@ -201,3 +201,32 @@
     /* text-decoration: underline; */
     background-color: rgb(100, 89, 89);
 }
+
+
+/* category dropdown */
+
+.category-dropdown-menu{
+  display: none;
+  /* position: absolute; */
+  position: relative;
+  /* top: 100%; */
+  /* left: 0; */
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.category-dropdown-menu.open {
+  display: block;
+}
+
+.category-dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.category-dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}

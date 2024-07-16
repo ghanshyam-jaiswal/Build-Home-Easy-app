@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AdminEditItem from './components/AdminEditItem'
 import AdminViewItem from './components/AdminViewItem'
 import AdminEditChildItem from './components/AdminEditChildItem'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -40,7 +41,9 @@ const App = () => {
               <Route path="/admin/orders" element={<AdminOrders/>} ></Route>
               <Route path="/admin/contact" element={<AdminContact/>} ></Route>
             </Route>
+            {/* <Route path='/footer' element={<Footer/>}></Route> */}
         </Routes>
+        {/* <Footer/> */}
       </BrowserRouter>
       <ToastContainer/>
 

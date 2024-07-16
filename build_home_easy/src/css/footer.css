@@ -1,0 +1,61 @@
+.footer{
+    width: 100vw;
+    height: 22vh;
+    background-color: rgb(0, 0, 0);
+    color: rgb(174, 160, 160);
+    /* color: rgb(224, 209, 209); */
+    /* margin: 1% 0% 0%; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px solid; */
+    /* position: relative;
+    bottom: 0; */
+    
+}
+.footer-logo1{
+    width: 10%;
+    height: 60%;
+    /* border: 1px solid; */
+    /* background-image: url(../Assests/8303673-removebg-preview.png); */
+    background-size: cover;
+    background-position: center;
+}
+.footer-info{
+    width: 10%;
+    height: 70%;
+    /* margin-top: 2%; */
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* flex-wrap: wrap; */
+
+}
+.footer-info-title{
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+    /* margin-left: 0%; */
+}
+.footer-info-title h1{
+    font-size: 1.2vw;
+}
+.footer-info-title h3{
+    font-size: 2.2vw;
+}
+.footer-info-icon{
+    margin-right: 5%;
+}
+.footer-info div{
+    padding-top: 5%;
+    cursor: pointer;
+    border: 1x solid white;
+    font-size: 0.84vw;
+}
+.footer .landing-footer-info-link div a{
+    text-decoration: none;
+    color: rgb(174, 160, 160);
+}
+   

@@ -11,12 +11,16 @@ const Nav = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
     const toggleSidebar = () => {
       setIsOpen(!isOpen);
     }; 
     const toggleProfile = () => {
         setIsProfileOpen(!isProfileOpen);
+    };
+    const toggleCategory = () => {
+        setIsCategoryOpen(!isCategoryOpen);
     };
 
     
@@ -54,7 +58,16 @@ const Nav = () => {
             {/* <ul> */}
             <div className='links'>
                 <NavLink to='/' className={(e)=>{return e.isActive?"active":" "}} >Home</NavLink>
-                <NavLink to='/category' className={(e)=>{return e.isActive?"active":" "}} >Category</NavLink>
+
+                <NavLink onClick={toggleCategory}  >Category</NavLink>
+                { isCategoryOpen && 
+                        <div className={`category-dropdown-menu ${isCategoryOpen ? 'open' : ''}`}>
+                            <NavLink to='/category/item1'  >Item 1</NavLink>
+                            <NavLink to='/category/item2'  >Item 2</NavLink>
+                            <NavLink to='/category/item3'  >Item 3</NavLink>
+                        </div>
+                }
+                
                 <NavLink to='/contact' className={(e)=>{return e.isActive?"active":" "}} >Contact</NavLink>
                 <NavLink to='/about' className={(e)=>{return e.isActive?"active":" "}} >About</NavLink>
             </div>

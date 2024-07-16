@@ -1,8 +1,8 @@
 .landing{
-    width: 100%;
+    width: 100vw;
     height: auto;
     /* height: 90vh; */
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     /* overflow-x: hidden; */
 }
 
@@ -29,18 +29,21 @@
     height: 100%; 
     width: 100%;
     object-fit: cover;
-    border: 1px solid;
+    /* border: 1px solid; */
     /* background-color: antiquewhite; */
 
 }
 
 .landing-item{
-    width: 100%;
-    height: 60vh;
-    /* border: 1px solid yellow; */
+    width: 100vw;
+    /* height: 60vh; */
+    height: auto;
+    /* border: 1px solid rgb(131, 131, 109); */
     /* background-color: rgb(230, 230, 175); */
     display: flex;
+    /* justify-content: space-evenly; */
     flex-wrap: wrap;
+    /* gap: 10%; */
     /* justify-content: space-between; */
     /* align-items: center;
     flex-wrap: wrap;
@@ -48,10 +51,10 @@
  }
 
  .landing-item-items{
-    margin: 0% 4% 0% 1%;
+    margin: 2% 2% 2% 2.8%;
     /* border: 1px solid; */
-    width: 15%;
-    height: 30%;
+    width: 15vw;
+    height: 32vh;
     /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
