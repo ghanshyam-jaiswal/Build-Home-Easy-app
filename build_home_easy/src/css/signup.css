@@ -1,0 +1,124 @@
+.signup{
+    width: 100vw;
+    height: 90vh;
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url(../Assests/signup-img.jpg);
+    background-size: cover;
+    background-position: center; */
+    /* filter: blur(1px); */
+    /* filter: blur(80px);
+  -webkit-filter: blur(0px); */
+}
+.signup form{
+    width: 40%;
+    height: 90%;
+    /* border: 1px solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding:1%;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 15px;
+    /* background-color: black; */
+    font-size: 0.8vw;
+}
+
+.signup form .signup-div{
+    width: 86%;
+    height: 85%;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.signup form .signup-div input{
+    border: none;
+    background-color: rgb(241, 238, 232);
+    padding-left: 2%;
+    font-size: 0.75vw;
+}
+.signup form .signup-div input:hover{
+    background-color: rgb(233, 229, 221);
+    border: 2px solid rgb(199, 171, 171);
+}
+
+.signup-fullname{
+    border: 1px solid;
+    width: 90%;
+    height: 12%;
+
+}
+.signup-fullname input{
+    height: 39%;
+    width: 45%;
+    border-radius: 5px;
+    margin-right: 5%;
+}
+.signup-email{
+    border: 1px solid;
+    width: 90%;
+    height: 10%;
+}
+.signup-email .icon{
+    /* border: 1px solid; */
+    /* font-size: 5vh; */
+    width: 7%;
+    height: 19%;
+    padding-top: 0.5%;
+}
+.signup-email input{
+    height: 39%;
+    width: 95.3%;
+    border-radius: 5px;
+    margin-right: 5%;
+}
+
+.signup-contact{
+    border: 1px solid;
+    width: 90%;
+    height: 15%;
+}
+.signup-contact input{
+    height: 39%;
+    width: 95.3%;
+    border-radius: 5px;
+    margin-right: 5%;
+}
+.signup-address{
+    border: 1px solid;
+    width: 90%;
+    height: 33%;
+}
+.signup-address input{
+    height: 18%;
+    width: 45%;
+    border-radius: 5px;
+    margin-right: 5%;
+    margin-bottom: 4%;
+}
+.signup-submit{
+    width: 40%;
+    height: 7%;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+.signup-submit button{
+    width: 40%;
+    height: 90%;
+    border-radius: 7px;
+    border: none;
+    color: white;
+    background-color: rgb(81, 81, 222);
+    font-size: 0.7vw;
+}
+.signup-submit button:hover{
+    background-color: rgb(10, 10, 218);
+}
+

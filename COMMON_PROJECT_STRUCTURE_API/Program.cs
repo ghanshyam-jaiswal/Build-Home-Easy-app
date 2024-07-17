@@ -290,6 +290,16 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await productService.GetAllItems(rData));
             });
 
+             e.MapPost("homeGetAllItemName",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received contact request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1002") // contact
+                    await http.Response.WriteAsJsonAsync(await productService.GetAllItemName(rData));
+            });
+
              e.MapPost("homeUpdateItemById",
             [AllowAnonymous] async (HttpContext http) =>
             {

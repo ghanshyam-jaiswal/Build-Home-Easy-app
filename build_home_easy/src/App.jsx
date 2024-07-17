@@ -1,8 +1,10 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Landing from './components/Landing'
 import Nav from './components/Nav'
 import Test from './components/Test'
+import Signup from './components/Signup'
 import Admin from './components/Admin'
 import AdminAllItems from './components/AdminAllItems'
 import AdminUpdateItem from './components/AdminUpdateItem'
@@ -17,16 +19,50 @@ import AdminEditItem from './components/AdminEditItem'
 import AdminViewItem from './components/AdminViewItem'
 import AdminEditChildItem from './components/AdminEditChildItem'
 import Footer from './components/Footer'
+import axios  from "axios";
 
 const App = () => {
+
+  let [list,setList]=useState([])
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(()=>{
+    console.log("Product List updated",list)
+  },[list])
+
+  let fetchProducts = async () => {
+    try {
+      const response = await axios.post('http://localhost:5164/homeGetAllItems', {
+        eventID: "1001",
+        addInfo: {}
+      });
+
+      if (response.data.rData.rMessage === 'Successful') {
+        setList(response.data.rData.users);
+        // console.log("Fetched product List successfully");
+        // console.log("product List ",list);
+
+      } else {
+        console.log("Failed to fetch  Product List");
+      }
+    } catch (error) {
+      console.error("Error fetching Product List:", error);
+    }
+  };
+
   return (
     <div>
 
       <BrowserRouter>
-        <Nav/>
+        <Nav list={list}/>
         <Routes>
-          <Route path='/' element={<Landing/>}></Route>
+          <Route path='/' element={<Landing list={list}/>}></Route>
           <Route path='/test1' element={<Test/>}></Route>
+          <Route path='/signup' element={<Signup/>}></Route>
+
           <Route path="/admin" element={<Admin/>} >
               <Route index element={<Navigate to="/admin/users" />} />
               {/* <Route path="/admin/products" element={<AdminProduct/>} ></Route> */}
@@ -40,7 +76,7 @@ const App = () => {
               <Route path="/admin/users" element={<AdminUsers/>} ></Route>
               <Route path="/admin/orders" element={<AdminOrders/>} ></Route>
               <Route path="/admin/contact" element={<AdminContact/>} ></Route>
-            </Route>
+          </Route>
             {/* <Route path='/footer' element={<Footer/>}></Route> */}
         </Routes>
         {/* <Footer/> */}

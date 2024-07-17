@@ -1,17 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import "../css/nav.css"
 // import '.../css/nav.css'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
+import axios from 'axios';
 
 
 
-const Nav = () => {
+const Nav = ({list}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+    let [nameList,setNameList]=useState([])
+
+    const [searchQuery, setSearchQuery] = useState("");
+    const [filteredItems, setFilteredItems] = useState([]);
+    const [searchPerformed, setSearchPerformed] = useState(false);
 
     const toggleSidebar = () => {
       setIsOpen(!isOpen);
@@ -23,7 +29,34 @@ const Nav = () => {
         setIsCategoryOpen(!isCategoryOpen);
     };
 
-    
+    useEffect(()=>{
+        setNameList(list)
+        console.log("nameList",nameList)
+    },[list])
+
+    useEffect(() => {
+        filterItems();
+        // console.log("filteredItems2 ",filteredItems)
+    }, [searchQuery,nameList]);
+
+    const filterItems = () => {
+       
+        if (!searchQuery) {
+            setFilteredItems([]);
+            setSearchPerformed(false)
+        } else {
+            setSearchPerformed(true)
+            const filtered = nameList.filter(item => 
+                item.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredItems(filtered);
+            // console.log("filteredItems",filteredItems)
+        }
+    };
+
+
+
+
   return (
     <>
         <div className='nav'>
@@ -40,7 +73,31 @@ const Nav = () => {
                 <GiHamburgerMenu color="white" onClick={toggleSidebar}/>
             </div>
             <div className='search-profile-name'>
-                <input type="text" placeholder='Search here....'/>
+                {/* <input type="text" placeholder='Search here....'/> */}
+                    <input 
+                        type="text" 
+                        placeholder='Search here....' 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    {filteredItems.length > 0 && (
+                        <div className='search-results'>
+                            {filteredItems.map((item, index) => (
+                                <div key={index} className='search-result-item'>
+                                    <NavLink to={`/category/${item.name}`} onClick={() => setSearchQuery('')}>
+                                        {item.name}
+                                    </NavLink>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    {
+                        searchPerformed && filteredItems.length === 0 && (
+                            <div className='search-results' style={{color:'black'}}>
+                                No results found
+                            </div>
+                        )
+                    }
                 <div className='name-profile'>
                     <h3>Name</h3>
                     {/* <img src="xxx" alt="Profile" /> */}
@@ -59,12 +116,17 @@ const Nav = () => {
             <div className='links'>
                 <NavLink to='/' className={(e)=>{return e.isActive?"active":" "}} >Home</NavLink>
 
-                <NavLink onClick={toggleCategory}  >Category</NavLink>
+                <div onClick={toggleCategory} className='category' >Category</div>
                 { isCategoryOpen && 
                         <div className={`category-dropdown-menu ${isCategoryOpen ? 'open' : ''}`}>
-                            <NavLink to='/category/item1'  >Item 1</NavLink>
+                            {/* <NavLink to='/category/item1'  >Item 1</NavLink>
                             <NavLink to='/category/item2'  >Item 2</NavLink>
-                            <NavLink to='/category/item3'  >Item 3</NavLink>
+                            <NavLink to='/category/item3'  >Item 3</NavLink> */}
+                            {
+                                list.map((item,index)=>(
+                                    <NavLink to={`/category/${item.name}`} key={index} className="categoryName">{item.name}</NavLink>
+                                ))
+                            }
                         </div>
                 }
                 

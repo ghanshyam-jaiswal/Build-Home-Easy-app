@@ -11,9 +11,9 @@ const Footer = () => {
     <div className="footer">
       <div
         className="footer-logo1"
-        style={{
-          backgroundImage: 'url("../Assests/logo-removebg.png")',
-        }}
+        // style={{
+        //   backgroundImage: 'url("../assests/home-logo.png")',
+        // }}
       ></div>
       <div
         className="footer-info footer-info-title"

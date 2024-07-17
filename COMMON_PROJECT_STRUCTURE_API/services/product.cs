@@ -557,12 +557,12 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             return resData;
         }
 
-        public async Task<responseData> GetAllProductName(requestData rData)
+        public async Task<responseData> GetAllItemName(requestData rData)
         {
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT productName FROM pc_student.RepairStoreProduct ORDER BY id DESC";
+                var query = @"SELECT name FROM pc_student.BuildHomeEasy ORDER BY id DESC";
                 var dbData = ds.executeSQL(query, null);
 
                 if (dbData == null)
@@ -596,7 +596,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                                 {
                                     // id = rowData.ElementAtOrDefault(0),
                                     // productImage = rowData.ElementAtOrDefault(1),
-                                    productName = rowData.ElementAtOrDefault(0),
+                                    name = rowData.ElementAtOrDefault(0),
                                     // productPrice = rowData.ElementAtOrDefault(3),
                                     // productDemoImages = rowData.ElementAtOrDefault(4),
                                     // productDemoText = rowData.ElementAtOrDefault(5),
