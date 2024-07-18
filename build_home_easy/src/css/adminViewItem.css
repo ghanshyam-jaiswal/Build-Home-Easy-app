@@ -1,7 +1,7 @@
 .adminViewItem{
-    width: 85%;
-    height: 100%;
-    /* border: 1px solid brown; */
+    width: 100vw;
+    height: 90vh;
+    border: 1px solid brown;
     font-size: 0.9vw;
     display: flex;
     flex-wrap: wrap;
@@ -11,18 +11,20 @@
 }
 .adminViewItem .parentDetails{
   width: 90%;
-  height: 10%;
+  height: 20%;
   display: flex;
   align-items: center;
   gap: 2%;
   /* border: 1px solid brown; */
   box-shadow: 0px 0px 10px rgb(223, 201, 201);
+  border-radius: 7px;
 
 }
 .adminViewItem .parentDetails img{
-  width: 9%;
+  width: 11%;
   height: 100%;
   /* border: 1px solid brown; */
+  margin-left: 2%;
 
 }
 .adminViewItem .parentDetails h2{
@@ -32,11 +34,13 @@
 }
 .adminViewItem .tableContainer {
     width: 90%;
-    height: 80%;
+    height: 70%;
     box-shadow: 0px 0px 10px rgb(223, 201, 201);
     /* padding: 2%; */
     overflow-y: auto;
     /* border: 1px solid; */
+    border-radius: 7px;
+
   }
   
   .adminViewItem table {

@@ -20,6 +20,7 @@ import AdminViewItem from './components/AdminViewItem'
 import AdminEditChildItem from './components/AdminEditChildItem'
 import Footer from './components/Footer'
 import axios  from "axios";
+import Login from './components/Login'
 
 const App = () => {
 
@@ -62,9 +63,10 @@ const App = () => {
           <Route path='/' element={<Landing list={list}/>}></Route>
           <Route path='/test1' element={<Test/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
 
-          <Route path="/admin" element={<Admin/>} >
-              <Route index element={<Navigate to="/admin/users" />} />
+          {/* <Route path="/admin" element={<Admin/>} > */}
+              {/* <Route index element={<Navigate to="/admin/users" />} /> */}
               {/* <Route path="/admin/products" element={<AdminProduct/>} ></Route> */}
               <Route path="/admin/allItems" element={<AdminAllItems/>} ></Route>
               <Route path="/admin/editItem" element={<AdminEditItem/>} ></Route>
@@ -76,7 +78,7 @@ const App = () => {
               <Route path="/admin/users" element={<AdminUsers/>} ></Route>
               <Route path="/admin/orders" element={<AdminOrders/>} ></Route>
               <Route path="/admin/contact" element={<AdminContact/>} ></Route>
-          </Route>
+          {/* </Route> */}
             {/* <Route path='/footer' element={<Footer/>}></Route> */}
         </Routes>
         {/* <Footer/> */}

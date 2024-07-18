@@ -16,7 +16,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
         {
             try
             {
-                var query = @"SELECT * FROM pc_student.RepaireStore WHERE email=@Email AND password=@Password";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyUser WHERE email=@Email AND password=@Password";
                 MySqlParameter[] parameters = new MySqlParameter[]
                 {
                     new MySqlParameter("@Email", email),
@@ -34,6 +34,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 {
                     return "Invalid email or password";
                 }
+
             }
             catch (Exception ex)
             {
@@ -45,7 +46,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
         {
             try
             {
-                var query = @"SELECT * FROM pc_student.RepairStoreAdmin WHERE email=@Email AND password=@Password";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyAdmin WHERE email=@Email AND password=@Password";
                 MySqlParameter[] parameters = new MySqlParameter[]
                 {
                     new MySqlParameter("@Email", email),

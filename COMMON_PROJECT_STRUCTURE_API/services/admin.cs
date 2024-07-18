@@ -15,7 +15,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.RepairStoreAdmin WHERE email=@email";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyAdmin WHERE email=@email";
 
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
@@ -58,6 +58,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                                     lastName = rowData.ElementAtOrDefault(2),
                                     email = rowData.ElementAtOrDefault(3),
                                     password = rowData.ElementAtOrDefault(4),
+                                    profile=rowData.ElementAtOrDefault(5)
                                 };
 
                                 usersList.Add(user);

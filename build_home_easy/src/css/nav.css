@@ -74,6 +74,10 @@
     justify-content: space-around;
     align-items: center;
 }
+.search-profile-name .name-profile a{
+  text-decoration: none;
+  color: white;
+}
 .search-profile-name .name-profile .icon{
     font-size: 1.5vw;
     /* border: 1px solid; */

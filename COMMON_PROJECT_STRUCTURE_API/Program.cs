@@ -20,7 +20,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
         s.AddSingleton<delete>();
         s.AddSingleton<contact>();
         s.AddSingleton<users>();
-        s.AddSingleton<getUserByEmail>();
+        // s.AddSingleton<users>();
         s.AddSingleton<admin>();
         s.AddSingleton<product>();
         s.AddSingleton<addToCart>();
@@ -69,7 +69,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
             var users = e.ServiceProvider.GetRequiredService<users>();
             var deleteService = e.ServiceProvider.GetRequiredService<delete>();
             var productService = e.ServiceProvider.GetRequiredService<product>();
-            var getUserByEmail = e.ServiceProvider.GetRequiredService<getUserByEmail>();
+            // var user = e.ServiceProvider.GetRequiredService<users>();
             var addToCart = e.ServiceProvider.GetRequiredService<addToCart>();
             var admin = e.ServiceProvider.GetRequiredService<admin>();
 
@@ -82,7 +82,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await login.Login(rData));
             });
 
-            e.MapPost("loginservice",
+            e.MapPost("homeLogin",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -96,7 +96,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(result);
                 }
             });
-            e.MapPost("adminLogin",
+            e.MapPost("homeAdminLogin",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -111,7 +111,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 }
             });
 
-            e.MapPost("getUserByEmail",
+            e.MapPost("homeGetUserByEmail",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -120,12 +120,12 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 if (rData.eventID == "1001") // getUserByEmail
                 {
                     var email = rData.addInfo["email"].ToString();
-                    var result = await getUserByEmail.GetUserByEmail(email);
+                    var result = await users.GetUserByEmail(rData);
                     await http.Response.WriteAsJsonAsync(result);
                 }
             });
 
-            e.MapPost("getAdminByEmail",
+            e.MapPost("homeGetAdminByEmail",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -140,7 +140,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
             });
 
 
-            e.MapPost("signup",
+            e.MapPost("homeSignup",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();

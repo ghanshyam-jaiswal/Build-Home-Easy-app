@@ -1,7 +1,7 @@
 .adminAllProducts{
-    width: 85%;
-    height: 100%;
-    /* border: 1px solid brown; */
+    width: 100vw;
+    height: 90vh;
+    /* border: 3px solid brown; */
     font-size: 0.9vw;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@
 }
 .adminAllProducts .tableContainer {
     width: 85%;
-    height: 85%;
+    height: 90%;
     box-shadow: 0px 0px 10px rgb(223, 201, 201);
     /* padding: 2%; */
     overflow-y: auto;

@@ -15,7 +15,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.RepaireStore WHERE email=@email";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyUser WHERE email=@email";
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
                     new MySqlParameter("@email", rData.addInfo["email"])
@@ -28,12 +28,13 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
-                   var sq = @"INSERT INTO pc_student.RepaireStore (first_name, last_name, email, password, contact, street_address1, street_address2, city, state, pincode, country,profile) 
-                               VALUES (@FIRST_NAME, @LAST_NAME, @EMAIL, @PASSWORD, @CONTACT, @STREET_ADDRESS1, @STREET_ADDRESS2, @CITY, @STATE, @PINCODE, @COUNTRY,@PROFILE)";
+                   var sq = @"INSERT INTO pc_student.BuildHomeEasyUser (first_name, last_name, gender, email, password, contact, street_address1, street_address2, city, state, pincode, country,profile) 
+                               VALUES (@FIRST_NAME, @LAST_NAME, @gender, @EMAIL, @PASSWORD, @CONTACT, @STREET_ADDRESS1, @STREET_ADDRESS2, @CITY, @STATE, @PINCODE, @COUNTRY,@PROFILE)";
                   MySqlParameter[] insertParams = new MySqlParameter[]
                     {
                         new MySqlParameter("@FIRST_NAME", rData.addInfo["first_name"]),
                         new MySqlParameter("@LAST_NAME", rData.addInfo["last_name"]),
+                        new MySqlParameter("@gender", rData.addInfo["gender"]),
                         new MySqlParameter("@EMAIL", rData.addInfo["email"]),
                         new MySqlParameter("@PASSWORD", rData.addInfo["password"]),
                         new MySqlParameter("@CONTACT", rData.addInfo["contact"]),
