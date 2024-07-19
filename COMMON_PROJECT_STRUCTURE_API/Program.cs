@@ -160,7 +160,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await signup.AdminSignup(rData));
             });
 
-            e.MapPost("contact",
+            e.MapPost("homeContact",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -170,7 +170,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await contact.Contact(rData));
             });
 
-            e.MapPost("getAllContact",
+            e.MapPost("homeGetAllContact",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -182,7 +182,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
 
            
 
-            e.MapPost("deleteContact",
+            e.MapPost("homeDeleteContact",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -192,7 +192,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await contact.DeleteContact(rData));
             });
 
-            e.MapPost("getAllUsers",
+            e.MapPost("homeGetAllUsers",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
@@ -202,6 +202,19 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 {
                     // Call the GetAllUsers method directly and return its result as JSON response
                     await http.Response.WriteAsJsonAsync(await users.GetAllUsers(rData));
+                }
+            });
+
+            e.MapPost("homeDeleteUser",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received get users request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // getUsers
+                {
+                    // Call the GetAllUsers method directly and return its result as JSON response
+                    await http.Response.WriteAsJsonAsync(await users.DeleteUser(rData));
                 }
             });
 

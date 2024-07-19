@@ -16,7 +16,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.RepaireStoreContact WHERE email=@email";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyContact WHERE email=@email";
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
                     new MySqlParameter("@email", rData.addInfo["email"])
@@ -29,14 +29,14 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
-                   var sq = @"INSERT INTO pc_student.RepaireStoreContact (name, email, message, dateAndTime) 
-                               VALUES (@NAME, @EMAIL, @MESSAGE, @dateAndTime)";
+                   var sq = @"INSERT INTO pc_student.BuildHomeEasyContact (name, email, message) 
+                               VALUES (@NAME, @EMAIL, @MESSAGE)";
                   MySqlParameter[] insertParams = new MySqlParameter[]
                     {
                         new MySqlParameter("@NAME", rData.addInfo["name"]),
                         new MySqlParameter("@EMAIL", rData.addInfo["email"]),
                         new MySqlParameter("@MESSAGE", rData.addInfo["message"]),
-                        new MySqlParameter("@dateAndTime", rData.addInfo["dateAndTime"]),
+                        // new MySqlParameter("@dateAndTime", rData.addInfo["dateAndTime"]),
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 
@@ -55,7 +55,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.RepaireStoreContact ORDER BY Id DESC";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyContact ORDER BY id DESC";
                 var dbData = ds.executeSQL(query, null);
 
                 if (dbData == null)
@@ -87,10 +87,10 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                                 var user = new
                                 {
-                                    Id = rowData.ElementAtOrDefault(0),
-                                    Name = rowData.ElementAtOrDefault(1),
-                                    Email = rowData.ElementAtOrDefault(2),
-                                    Message = rowData.ElementAtOrDefault(3),
+                                    id = rowData.ElementAtOrDefault(0),
+                                    name = rowData.ElementAtOrDefault(1),
+                                    email = rowData.ElementAtOrDefault(2),
+                                    message = rowData.ElementAtOrDefault(3),
                                     dateAndTime = rowData.ElementAtOrDefault(4),
                                 };
 
@@ -118,14 +118,12 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
             try
             {
-                // Your delete query
-                var query = @"DELETE FROM pc_student.RepaireStoreContact 
-                            WHERE Id = @Id;";
+                var query = @"DELETE FROM pc_student.BuildHomeEasyContact 
+                            WHERE id = @Id;";
 
-                // Your parameters
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@Id", rData.addInfo["Id"])
+                    new MySqlParameter("@Id", rData.addInfo["id"])
                 };
 
                 // Condition to execute the delete query

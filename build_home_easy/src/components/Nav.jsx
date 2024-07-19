@@ -28,23 +28,14 @@ const Nav = ({list}) => {
     useEffect(()=>{
         let user=localStorage.getItem('user')
         setCheckUserLogin(user)
+        console.log("user",checkUserLogin)
     },[checkUserLogin])
 
     useEffect(()=>{
         let admin=localStorage.getItem('admin')
-        setCheckAdminLogin(admin)
+        setCheckAdminLogin(admin)   
+        console.log("admin",checkAdminLogin)
     },[checkAdminLogin])
-
-   
-    const toggleSidebar = () => {
-      setIsOpen(!isOpen);
-    }; 
-    const toggleProfile = () => {
-        setIsProfileOpen(!isProfileOpen);
-    };
-    const toggleCategory = () => {
-        setIsCategoryOpen(!isCategoryOpen);
-    };
 
     useEffect(()=>{
         setNameList(list)
@@ -55,6 +46,16 @@ const Nav = ({list}) => {
         filterItems();
         // console.log("filteredItems2 ",filteredItems)
     }, [searchQuery,nameList]);
+   
+    const toggleSidebar = () => {
+      setIsOpen(!isOpen);
+    }; 
+    const toggleProfile = () => {
+        setIsProfileOpen(!isProfileOpen);
+    };
+    const toggleCategory = () => {
+        setIsCategoryOpen(!isCategoryOpen);
+    };
 
     const filterItems = () => {
        
@@ -183,9 +184,9 @@ const Nav = ({list}) => {
                                 <div className='search-results'>
                                     {filteredItems.map((item, index) => (
                                         <div key={index} className='search-result-item'>
-                                            <NavLink to={`/category/${item.name}`} onClick={() => setSearchQuery('')}>
+                                            <div onClick={() => {setSearchQuery(''); navigate(`/item/${item.name}`,{state:{item}} )}}>
                                                 {item.name}
-                                            </NavLink>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -224,7 +225,8 @@ const Nav = ({list}) => {
                                     <div className={`category-dropdown-menu ${isCategoryOpen ? 'open' : ''}`}>
                                         {
                                             list.map((item,index)=>(
-                                                <NavLink to={`/category/${item.name}`} key={index} className="categoryName">{item.name}</NavLink>
+                                                // <NavLink to={`/item/${item.name}`} key={index} className="categoryName">{item.name}</NavLink>
+                                                <div key={index} onClick={()=>navigate(`/item/${item.name}`,{state:{item}} )}  className="categoryName">{item.name}</div>
                                             ))
                                         }
                                     </div>

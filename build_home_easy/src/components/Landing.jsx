@@ -41,6 +41,8 @@ const Landing = ({list}) => {
       });
     };
 
+    let navigate=useNavigate()
+
   return (
 
     <div className='landing' >
@@ -64,14 +66,9 @@ const Landing = ({list}) => {
             <div className="landing-item">
               {
                 list.map((item)=>(
-
-                      <div key={item.id} className="landing-item-items">
-                        <Link  to={`/card/${item.name}`} style={{textDecoration:"none"}}>
-                          {/* <div className="landing-item-img" style={{backgroundImage:'url("../Assests/alarm\ watch.jpg")'}}></div> */}
-                          <img src={item.image} alt="" className="landing-item-img" />
-                          {/* <div className="landing-item-text">Alarm</div> */}
-                          <div className="landing-item-text">{item.name}</div>
-                        </Link>
+                      <div key={item.id} onClick={()=> navigate(`/item/${item.name}`,{state:{item}})} className="landing-item-items" >
+                        <img src={item.image} alt="" className="landing-item-img" />
+                        <div className="landing-item-text">{item.name}</div>
                       </div>
                 ))
               }

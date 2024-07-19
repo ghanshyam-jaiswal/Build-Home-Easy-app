@@ -21,6 +21,8 @@ import AdminEditChildItem from './components/AdminEditChildItem'
 import Footer from './components/Footer'
 import axios  from "axios";
 import Login from './components/Login'
+import Contact from './components/Contact'
+import Item from './components/Item'
 
 const App = () => {
 
@@ -64,6 +66,8 @@ const App = () => {
           <Route path='/test1' element={<Test/>}></Route>
           <Route path='/signup' element={<Signup/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
+          <Route path='/contact' element={<Contact/>}></Route>
+          <Route path='/item/:name' element={<Item/>}></Route>
 
           {/* <Route path="/admin" element={<Admin/>} > */}
               {/* <Route index element={<Navigate to="/admin/users" />} /> */}

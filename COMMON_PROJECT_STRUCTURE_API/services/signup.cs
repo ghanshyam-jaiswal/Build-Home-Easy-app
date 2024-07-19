@@ -28,7 +28,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
-                   var sq = @"INSERT INTO pc_student.BuildHomeEasyUser (first_name, last_name, gender, email, password, contact, street_address1, street_address2, city, state, pincode, country,profile) 
+                   var sq = @"INSERT INTO pc_student.BuildHomeEasyUser (first_name, last_name, gender, email, password, contact, street_address1, street_address2, city, state, pincode, country, profile) 
                                VALUES (@FIRST_NAME, @LAST_NAME, @gender, @EMAIL, @PASSWORD, @CONTACT, @STREET_ADDRESS1, @STREET_ADDRESS2, @CITY, @STATE, @PINCODE, @COUNTRY,@PROFILE)";
                   MySqlParameter[] insertParams = new MySqlParameter[]
                     {
@@ -44,7 +44,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         new MySqlParameter("@STATE", rData.addInfo["state"]),
                         new MySqlParameter("@PINCODE", rData.addInfo["pincode"]),
                         new MySqlParameter("@COUNTRY", rData.addInfo["country"]),
-                        new MySqlParameter("@PROFILE", rData.addInfo["profile"])
+                        new MySqlParameter("@PROFILE", rData.addInfo["profile"]),
+                        // new MySqlParameter("@date", rData.addInfo["date"])
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 

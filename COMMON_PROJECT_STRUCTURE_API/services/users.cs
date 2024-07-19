@@ -68,6 +68,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                                     pincode = rowData.ElementAtOrDefault(11),
                                     country = rowData.ElementAtOrDefault(12),
                                     profile=rowData.ElementAtOrDefault(13)
+                                    // date = rowData.ElementAtOrDefault(14)
                                 };
 
                                 usersList.Add(user);
@@ -94,7 +95,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.RepaireStore ORDER BY user_id DESC";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyUser ORDER BY id DESC";
                 var dbData = ds.executeSQL(query, null);
 
                 if (dbData == null)
@@ -126,19 +127,22 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                                 var user = new
                                 {
-                                    user_id = rowData.ElementAtOrDefault(0),
+                                    // id, first_name, last_name, gender, email, password, contact, street_address1, street_address2, city, state, pincode, country, profile
+                                    id = rowData.ElementAtOrDefault(0),
                                     first_name = rowData.ElementAtOrDefault(1),
                                     last_name = rowData.ElementAtOrDefault(2),
-                                    email = rowData.ElementAtOrDefault(3),
-                                    password = rowData.ElementAtOrDefault(4),
-                                    contact = rowData.ElementAtOrDefault(5),
-                                    street_address1 = rowData.ElementAtOrDefault(6),
-                                    street_address2 = rowData.ElementAtOrDefault(7),
-                                    city = rowData.ElementAtOrDefault(8),
-                                    state = rowData.ElementAtOrDefault(9),
-                                    pincode = rowData.ElementAtOrDefault(10),
-                                    country = rowData.ElementAtOrDefault(11),
-                                    profile = rowData.ElementAtOrDefault(12)
+                                    gender = rowData.ElementAtOrDefault(3),
+                                    email = rowData.ElementAtOrDefault(4),
+                                    password = rowData.ElementAtOrDefault(5),
+                                    contact = rowData.ElementAtOrDefault(6),
+                                    street_address1 = rowData.ElementAtOrDefault(7),
+                                    street_address2 = rowData.ElementAtOrDefault(8),
+                                    city = rowData.ElementAtOrDefault(9),
+                                    state = rowData.ElementAtOrDefault(10),
+                                    pincode = rowData.ElementAtOrDefault(11),
+                                    country = rowData.ElementAtOrDefault(12),
+                                    profile = rowData.ElementAtOrDefault(13)
+                                    // date = rowData.ElementAtOrDefault(14)
                                 };
 
                                 usersList.Add(user);
@@ -158,6 +162,51 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
             return resData;
         }
+
+               public async Task<responseData> DeleteUser(requestData rData)
+        {
+            responseData resData = new responseData();
+
+            try
+            {
+                // Your delete query
+                var query = @"DELETE FROM pc_student.BuildHomeEasyUser 
+                            WHERE id = @Id;";
+
+                // Your parameters
+                MySqlParameter[] myParam = new MySqlParameter[]
+                {
+                    new MySqlParameter("@Id", rData.addInfo["id"])
+                };
+
+                // Condition to execute the delete query
+                bool shouldExecuteDelete = true;
+
+                if (shouldExecuteDelete)
+                {
+                    int rowsAffected = ds.ExecuteUpdateSQL(query, myParam);
+
+                    if (rowsAffected > 0)
+                    {
+                        resData.rData["rMessage"] = "DELETE SUCCESSFULLY.";
+                    }
+                    else
+                    {
+                        resData.rData["rMessage"] = "No rows affected. Delete failed.";
+                    }
+                }
+                else
+                {
+                    resData.rData["rMessage"] = "Condition not met. Delete query not executed.";
+                }
+            }
+            catch (Exception ex)
+            {
+                resData.rData["rMessage"] = "Exception occurred: " + ex.Message;
+            }
+            return resData;
+        }
+
     }
 }
 
