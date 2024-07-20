@@ -11,6 +11,8 @@ const adminAddChildItem = () => {
     let [itemImage,setItemImg]=useState("")
     let [itemName,setItemName]=useState('')
     let [itemPrice,setItemPrice]=useState('')
+    let [perItem,setPerItem]=useState('')
+    let [itemMinQuantity,setItemMinQuantity]=useState('')
 
     let navigate =useNavigate()
 
@@ -44,6 +46,14 @@ const adminAddChildItem = () => {
           proceed=false
           message+=' Price'
         }
+        else if(perItem===''|| perItem===null){
+          proceed=false
+          message+=' Per Item'
+        }
+        else if(itemMinQuantity===''|| itemMinQuantity===null){
+          proceed=false
+          message+=' Minimum Quantity'
+        }
         if(!proceed){
           // alert(message)
           toast.info(message)
@@ -61,9 +71,11 @@ const adminAddChildItem = () => {
             itemId:item.id,
             image:itemImage,
             name: itemName,
-            price:itemPrice
+            price:itemPrice,
+            perItem:perItem,
+            minQuantity:itemMinQuantity
            }}
-          //  console.log("payload3",payload3)
+          //  console.log("upload payload",payload)
         const response = await axios.post('http://localhost:5164/homeAddChildItem',payload);
         console.log("response",response)
         if(response.data.rData.rMessage==='Duplicate Credentials'){
@@ -74,14 +86,14 @@ const adminAddChildItem = () => {
             toast.success("Added Successful")
             navigate('/admin/viewItem',{state:{item}})
         }
-
-        
     }
 
     let handleClear=()=>{
         setItemImg('')
         setItemName('')
         setItemPrice('')
+        setPerItem('')
+        setItemMinQuantity('')
     }
 
   return (
@@ -126,6 +138,24 @@ const adminAddChildItem = () => {
             placeholder="Item Price"
             value={itemPrice}
             onChange={(e) => setItemPrice( e.target.value ) }
+          />
+        </div>
+
+        <div className="productName">
+          <input
+            type="text"
+            placeholder="Per Item : piece/kg/bag"
+            value={perItem}
+            onChange={(e) => setPerItem( e.target.value ) }
+          />
+        </div>
+
+        <div className="productName">
+          <input
+            type="number"
+            placeholder="Minimum Order Quantity"
+            value={itemMinQuantity}
+            onChange={(e) => setItemMinQuantity( e.target.value ) }
           />
         </div>
 

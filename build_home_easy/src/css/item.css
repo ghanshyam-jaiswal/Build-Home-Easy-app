@@ -11,8 +11,8 @@
     overflow-y: auto;
 }
 .item .parentDetails{
-    width: 95vw;
-    height: 20vh;
+    min-width: 95vw;
+    min-height: 20vh;
     display: flex;
     align-items: center;
     gap: 2%;
@@ -36,11 +36,136 @@
   }
 
   .item .childDetails{
-    width: 90%;
-    height: 20%;
-    border: 1px solid brown;
+    /* width: 90%;
+    height: 30%; */
+    min-width: 90vw;
+    min-height: 30vh;
+    /* border: 1px solid brown; */
+    box-shadow: 0px 0px 10px rgb(223, 201, 201);
+    border-radius: 7px;
+    margin-bottom: 2%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
   }
   .item .childDetails img{
-    width: 20%;
+    width: 14%;
+    height: 70%;
+    /* border: 1px solid brown; */
+    margin-left: 2%;
+  }
+  .item .childDetails .info{
+    width: 50%;
     height: 80%;
+    /* border: 1px solid brown; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .item .childDetails .info .name{
+    width: 100%;
+    height: 20%;
+    font-size: 1.1vw;
+    font-weight: bold;
+    /* border: 1px solid brown; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .item .childDetails .info .price{
+    width: 100%;
+    height: 20%;
+    /* font-size: 1vw; */
+    /* font-weight: bold; */
+    /* border: 1px solid brown; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .item .childDetails .info .quantity{
+    width: 100%;
+    height: 35%;
+    /* border: 1px solid brown; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .item .childDetails .info .quantity p{
+    /* width: 30%;
+    height: 35%; */
+    font-size: 0.95vw;
+    font-weight: lighter;
+    /* border: 1px solid brown; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .item .childDetails .info .quantity div{
+    width: 40%;
+    height: 75%;
+    /* border: 1px solid brown; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .item .childDetails .info .quantity div .btn-decre{
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    /* border: none; */
+  }
+  .item .childDetails .info .quantity div .btn-incre{
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    /* border: none; */
+  }
+  .item .childDetails .info .quantity div button{
+    width: 15%;
+    height: 75%;
+    font-size: 1.2vw;
+    /* font-weight: bold; */
+  }  
+  .item .childDetails .info .quantity div button:hover{
+    background-color: rgb(223, 222, 221);
+
+  }
+  .item .childDetails .info .quantity div input{
+    width: 45%;
+    height: 75%;
+    padding-left: 5%;
+    padding-right: 1%;
+    /* background-color: #f3f5f7; */
+    /* border: none; */
+    border: 1px solid;
+    /* outline: none; */
+  }
+
+ 
+  .item .childDetails .buy{
+    width: 25%;
+    height: 80%;
+    /* border: 1px solid brown; */
+    display: flex;
+    flex-direction: column;
+    gap: 7%;
+    justify-content: center;
+    align-items: center;
+  }
+  .item .childDetails .buy div{
+    width: 100%;
+    height: 30%;
+    border: 1px solid;
+  }
+  .item .childDetails .buy button{
+    width: 25%;
+    height: 20%;
+    font-size: 0.9vw;
+    /* font-weight: bold; */
+    border-radius: 7px;
+    border: 1px solid brown;
+  }
+  .item .childDetails .buy button:hover{
+    background-color: rgb(223, 222, 221);
   }

@@ -74,7 +74,7 @@ const AdminEditItem = () => {
       }
       else if(response.data.rData.rMessage==='UPDATE SUCCESSFULLY'){
       // localStorage.removeItem('user')
-      toast.success("Product Added Successful")
+      toast.success("Updated Successful")
       navigate("/admin/allItems")
     }
   }

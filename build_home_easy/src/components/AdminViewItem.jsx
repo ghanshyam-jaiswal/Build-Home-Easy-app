@@ -12,8 +12,8 @@ const AdminViewItem = () => {
     let navigate=useNavigate()
 
     useEffect(()=>{
-        // console.log("userDetails updated",userDetails)
-        console.log("view item",item.name)
+        console.log("itemDetails updated",itemDetails)
+        // console.log("view item",item.name)
     },[itemDetails])
 
     useEffect(() => {
@@ -80,6 +80,8 @@ const AdminViewItem = () => {
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Per Item</th>
+                    <th>Min Quantity</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -90,6 +92,8 @@ const AdminViewItem = () => {
                         <td><img src={item2.image} alt="image" className='profile'/></td>
                         <td>{item2.name}</td>
                         <td>{item2.price}</td>
+                        <td>{item2.perItem || '--'}</td>
+                        <td>{item2.minQuantity || '--'}</td>
                         <td>
                             <div className='action'>
                                

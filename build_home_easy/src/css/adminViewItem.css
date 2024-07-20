@@ -1,7 +1,7 @@
 .adminViewItem{
     width: 100vw;
     height: 90vh;
-    border: 1px solid brown;
+    /* border: 1px solid brown; */
     font-size: 0.9vw;
     display: flex;
     flex-wrap: wrap;
@@ -129,8 +129,8 @@
   }
   .adminViewItem .action button{
     border: none;
-    width: 20%;
-    height: 3em;
+    width: 42%;
+    height: 3.2em;
     font-size: 0.65vw;
     border-radius: 10px;
     /* background-color: rgb(247, 90, 90); */
@@ -160,12 +160,12 @@
   } */
 
 
-  .adminViewItem .action .view-btn{
+  /* .adminViewItem .action .view-btn{
     background-color: rgb(149, 176, 236);
   }
   .adminViewItem .action .view-btn:hover{
     background-color: rgb(109, 145, 221);
-  }
+  } */
   .adminViewItem .edit-btn{
     background-color: rgb(221, 188, 40);
     /* color: rgb(223, 216, 216); */

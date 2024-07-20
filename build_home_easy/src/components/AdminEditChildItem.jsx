@@ -11,7 +11,10 @@ const AdminEditChildItem = () => {
     let [details,setDetails]=useState({
         image:'',
         name:'',
-        price:''
+        price:'',
+        perItem:'',
+        minQuantity:''
+
     })
 
     let navigate=useNavigate()
@@ -22,7 +25,9 @@ const AdminEditChildItem = () => {
         ...details,
         image:item2.image,
         name:item2.name,
-        price:item2.price
+        price:item2.price,
+        perItem:item2.perItem,
+        minQuantity:item2.minQuantity
     })
     // console.log("selected",itemImage,itemName)
   },[item,item2])
@@ -55,9 +60,16 @@ const AdminEditChildItem = () => {
         
         }
         else if(details.price===''|| details.price===null){
-        proceed=false
-        message+=' Price'
-        
+          proceed=false
+          message+=' Price'
+        }
+        else if(details.perItem===''|| details.perItem===null){
+          proceed=false
+          message+=' Per Item'
+        }
+        else if(details.minQuantity===''|| details.minQuantity===null){
+          proceed=false
+          message+=' Min Quantity'
         }
         if(!proceed){
         toast.info(message)
@@ -75,11 +87,12 @@ const AdminEditChildItem = () => {
                 id:item2.id,
                 image: details.image,
                 name: details.name,
-                price:details.price
-                
+                price:details.price,
+                perItem:details.perItem,
+                minQuantity:details.minQuantity
             }
         }
-        console.log("payload",payload)
+        // console.log("upload payload",payload)
         const response = await axios.post('http://localhost:5164/homeUpdateChildItemById', payload);
             // console.log("response",response)
         if(response.data.rData.rMessage==='Duplicate Credentials'){
@@ -87,7 +100,7 @@ const AdminEditChildItem = () => {
         }
         else if(response.data.rData.rMessage==='UPDATE SUCCESSFULLY'){
             // localStorage.removeItem('user')
-            toast.success("Product Added Successful")
+            toast.success("Updated Successful")
             navigate('/admin/viewItem',{state:{item}})
         }
     }
@@ -133,6 +146,24 @@ const AdminEditChildItem = () => {
           placeholder="Price"
           value={details.price}
           onChange={(e) =>setDetails({...details,price:e.target.value}) }
+        />
+      </div>
+
+      <div className="productName">
+        <input
+          type="text"
+          placeholder="Per Item : piece/kg/bag"
+          value={details.perItem}
+          onChange={(e) =>setDetails({...details,perItem:e.target.value}) }
+        />
+      </div>
+
+      <div className="productName">
+        <input
+          type="number"
+          placeholder="Min Quantity"
+          value={details.minQuantity}
+          onChange={(e) =>setDetails({...details,minQuantity:e.target.value}) }
         />
       </div>
 

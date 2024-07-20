@@ -314,8 +314,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 {
 
                     var sq = @"INSERT INTO pc_student.BuildHomeEasyChildItem
-                    (itemId, image, name, price) 
-                    VALUES (@itemId, @image, @name, @price)";
+                    (itemId, image, name, price, perItem, minQuantity) 
+                    VALUES (@itemId, @image, @name, @price, @perItem, @minQuantity)";
 
                     MySqlParameter[] updateParams = new MySqlParameter[]
                     {
@@ -323,6 +323,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         new MySqlParameter("@image", rData.addInfo["image"]),
                         new MySqlParameter("@name", rData.addInfo["name"]),
                         new MySqlParameter("@price", rData.addInfo["price"]),
+                        new MySqlParameter("@perItem", rData.addInfo["perItem"]),
+                        new MySqlParameter("@minQuantity", rData.addInfo["minQuantity"]),
                     };
                     var insertResult = ds.executeSQL(sq, updateParams);
                   
@@ -385,7 +387,9 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                                     itemId = rowData.ElementAtOrDefault(1),
                                     image = rowData.ElementAtOrDefault(2),
                                     name = rowData.ElementAtOrDefault(3),
-                                    price = rowData.ElementAtOrDefault(4)
+                                    price = rowData.ElementAtOrDefault(4),
+                                    perItem = rowData.ElementAtOrDefault(5),
+                                    minQuantity = rowData.ElementAtOrDefault(6)
 
                                 };
 
@@ -431,7 +435,9 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     var updateQuery  = @"UPDATE pc_student.BuildHomeEasyChildItem
                             SET image = @image,
                                 name = @name, 
-                                price=@price
+                                price=@price,
+                                perItem=@perItem,
+                                minQuantity=@minQuantity
                             WHERE id = @id";
 
                     MySqlParameter[] updateParams  = new MySqlParameter[]
@@ -440,7 +446,9 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         new MySqlParameter("@id", rData.addInfo["id"]),
                         new MySqlParameter("@image", rData.addInfo["image"]),
                         new MySqlParameter("@name", rData.addInfo["name"]),
-                        new MySqlParameter("@price", rData.addInfo["price"])
+                        new MySqlParameter("@price", rData.addInfo["price"]),
+                        new MySqlParameter("@perItem", rData.addInfo["perItem"]),
+                        new MySqlParameter("@minQuantity", rData.addInfo["minQuantity"])
                         // new MySqlParameter("@items", rData.addInfo["items"])
 
                     
