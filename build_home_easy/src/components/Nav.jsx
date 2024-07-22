@@ -153,7 +153,7 @@ const Nav = ({list}) => {
                 </div>
             </>
 
-            :
+            :       //user
 
             <>
 
@@ -201,7 +201,13 @@ const Nav = ({list}) => {
                         <div className='name-profile'>
                             
                             <h3>Name 
-                                <RiLogoutBoxRLine  onClick={()=>{localStorage.removeItem('user');navigate('/login')}}/> 
+                                <RiLogoutBoxRLine  
+                                    onClick={()=>{
+                                        if(window.confirm('Are You Sure')){
+                                            localStorage.removeItem('user');
+                                            navigate('/login')
+                                        }
+                                    }}/> 
                             </h3>  
                             {/* <h3>Name</h3> */}
                             {/* <img src="xxx" alt="Profile" /> */}
@@ -239,7 +245,7 @@ const Nav = ({list}) => {
 
                 <div className={`profile-dropdown ${isProfileOpen ? 'open' : ''}`}>
                         <NavLink to='/profile' className={(e)=>{return e.isActive?"active":" "}} >My Profile</NavLink>
-                        <NavLink to='/orders'>My Orders</NavLink>
+                        <NavLink to='/cart'>My Orders</NavLink>
                         <NavLink to='/logout'>Logout</NavLink>
                 </div>
             </>

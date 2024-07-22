@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import "../css/item.css"
 import axios from 'axios';
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import {toast} from 'react-toastify'
 
 
 const Item = () => {
@@ -10,6 +11,8 @@ const Item = () => {
     const {item} = useLocation().state;
     let [itemDetails,setItemDetails]=useState([])
     const [quantities, setQuantities] = useState([]);
+
+    let navigate=useNavigate()
 
     useEffect(()=>{
         console.log("itemDetails2 ",itemDetails);
@@ -61,13 +64,21 @@ const Item = () => {
       });
     };
 
-    let handleBuy=(index,item)=>{
+    let handleBuy=(index,childItem)=>{
       if (quantities[index] < itemDetails[index].minQuantity) {
-        alert(`Quantity for ${itemDetails[index].name} cannot be less than ${itemDetails[index].minQuantity}`);
+        // alert(`Quantity for ${itemDetails[index].name} cannot be less than ${itemDetails[index].minQuantity}`);
+        toast.warn(`Quantity for ${itemDetails[index].name} cannot be less than ${itemDetails[index].minQuantity}`);
       } else {
         // console.log("quantities",quantities)
-        console.log("quantity", quantities[index]*itemDetails[index].price);
-        console.log("item",item)
+        // console.log("Quantity", quantities[index]);
+        // console.log("Total Price", quantities[index]*itemDetails[index].price);
+        // console.log("Item",item)
+        navigate('/payment',{state:{
+          item,
+          childItem,
+          totalPrice:quantities[index]*itemDetails[index].price,
+          quantity: quantities[index]
+        }})
       }
     }
 

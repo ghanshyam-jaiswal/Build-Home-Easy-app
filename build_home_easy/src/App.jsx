@@ -23,6 +23,8 @@ import axios  from "axios";
 import Login from './components/Login'
 import Contact from './components/Contact'
 import Item from './components/Item'
+import Payment from './components/Payment'
+import Cart from './components/Cart'
 
 const App = () => {
 
@@ -68,6 +70,8 @@ const App = () => {
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/contact' element={<Contact/>}></Route>
           <Route path='/item/:name' element={<Item/>}></Route>
+          <Route path='/payment' element={<Payment/>}></Route>
+          <Route path='/cart' element={<Cart/>}></Route>
 
           {/* <Route path="/admin" element={<Admin/>} > */}
               {/* <Route index element={<Navigate to="/admin/users" />} /> */}

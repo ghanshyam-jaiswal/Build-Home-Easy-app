@@ -16,11 +16,11 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.repairStoreAddToCart WHERE id = @id AND productName=@productName";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyAddToCart WHERE userId = @userId AND itemName=@itemName";
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@id", rData.addInfo["id"]),
-                    new MySqlParameter("@productName", rData.addInfo["productName"])
+                    new MySqlParameter("@userId", rData.addInfo["userId"]),
+                    new MySqlParameter("@itemName", rData.addInfo["itemName"])
                 };
                 var dbData = ds.executeSQL(query, myParam);
                 
@@ -30,9 +30,9 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
-                   var sq = @"INSERT INTO pc_student.repairStoreAddToCart
-                    (id,productName, productImage, productPrice, brand, model, selectedProblem, otherProblem, uploadedImages, userName, contact) 
-                    VALUES (@id, @productName, @productImage, @productPrice,  @brand, @model, @selectedProblem, @otherProblem, @uploadedImages, @userName, @contact )";
+                   var sq = @"INSERT INTO pc_student.BuildHomeEasyAddToCart
+                    (userId, itemImage, itemName, pricePerItem, pricePerItem2, quantity, totalPrice) 
+                    VALUES (@userId, @itemImage, @itemName,  @pricePerItem, @pricePerItem2, @quantity, @totalPrice)";
 
                     // if (!decimal.TryParse(rData.addInfo["productPrice"].ToString(), out decimal productPrice))
                     // {
@@ -42,19 +42,15 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                   MySqlParameter[] insertParams = new MySqlParameter[]
                     {
-                        new MySqlParameter("@id", rData.addInfo["id"]),
+                        // new MySqlParameter("@id", rData.addInfo["id"]),
+                        new MySqlParameter("@userId", rData.addInfo["userId"]),
+                        new MySqlParameter("@itemImage", rData.addInfo["itemImage"]),
+                        new MySqlParameter("@itemName", rData.addInfo["itemName"]),
+                        new MySqlParameter("@pricePerItem",  rData.addInfo["pricePerItem"]),
+                        new MySqlParameter("@pricePerItem2",  rData.addInfo["pricePerItem2"]),
+                        new MySqlParameter("@quantity", rData.addInfo["quantity"]),
+                        new MySqlParameter("@totalPrice", rData.addInfo["totalPrice"])
                         // new MySqlParameter("@dateAndTime", rData.addInfo["dateAndTime"]),
-                        new MySqlParameter("@productName", rData.addInfo["productName"]),
-                        new MySqlParameter("@productImage", rData.addInfo["productImage"]),
-                        new MySqlParameter("@productPrice", rData.addInfo["productPrice"]),
-                        new MySqlParameter("@brand",  rData.addInfo["brand"]),
-                        // new MySqlParameter("@model",  productPrice),
-                        new MySqlParameter("@model", rData.addInfo["model"]),
-                        new MySqlParameter("@selectedProblem", rData.addInfo["selectedProblem"]),
-                        new MySqlParameter("@otherProblem", rData.addInfo["otherProblem"]),
-                        new MySqlParameter("@uploadedImages", rData.addInfo["uploadedImages"]),
-                        new MySqlParameter("@userName", rData.addInfo["userName"]),
-                        new MySqlParameter("@contact", rData.addInfo["contact"]),
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 
@@ -73,7 +69,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.repairStoreAddToCart ORDER BY table_id DESC";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyAddToCart ORDER BY id DESC";
                 var dbData = ds.executeSQL(query, null);
 
                 if (dbData == null)
@@ -143,11 +139,11 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             responseData resData = new responseData();
             try
             {
-                var query = @"SELECT * FROM pc_student.repairStoreAddToCart WHERE id=@id";
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyAddToCart WHERE userId=@userId";
 
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@id", rData.addInfo["id"]) // Ensure rData contains the id field
+                    new MySqlParameter("@userId", rData.addInfo["userId"]) // Ensure rData contains the id field
                 };
 
                 var dbData = ds.executeSQL(query, myParam);
@@ -181,20 +177,16 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                                 var user = new
                                 {
-                                    // table_id, id, dateAndTime, productName, productImage, productPrice, brand, model, selectedProblem, otherProblem, uploadedImages
-                                    table_id = rowData.ElementAtOrDefault(0),
-                                    id = rowData.ElementAtOrDefault(1),
-                                    dateAndTime = rowData.ElementAtOrDefault(2),
-                                    productName = rowData.ElementAtOrDefault(3),
-                                    productImage = rowData.ElementAtOrDefault(4),
-                                    productPrice = rowData.ElementAtOrDefault(5),
-                                    brand = rowData.ElementAtOrDefault(6),
-                                    model = rowData.ElementAtOrDefault(7),
-                                    selectedProblem = rowData.ElementAtOrDefault(8),
-                                    otherProblem = rowData.ElementAtOrDefault(9),
-                                    uploadedImages = rowData.ElementAtOrDefault(10),
-                                    userName = rowData.ElementAtOrDefault(11),
-                                    contact = rowData.ElementAtOrDefault(12),
+                                    //id, userId, itemImage, itemName, pricePerItem, quantity, totalPrice, dateAndTime
+                                    id = rowData.ElementAtOrDefault(0),
+                                    userId = rowData.ElementAtOrDefault(1),
+                                    itemImage = rowData.ElementAtOrDefault(2),
+                                    itemName = rowData.ElementAtOrDefault(3),
+                                    pricePerItem = rowData.ElementAtOrDefault(4),
+                                    pricePerItem2 = rowData.ElementAtOrDefault(5),
+                                    quantity = rowData.ElementAtOrDefault(6),
+                                    totalPrice = rowData.ElementAtOrDefault(7),
+                                    dateAndTime = rowData.ElementAtOrDefault(8),
                                 };
 
                                 usersList.Add(user);
@@ -212,7 +204,6 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 resData.rData["rMessage"] = "Exception occurred: " + ex.Message;
                 resData.rStatus = 1; // Indicate error
             }
-
             return resData;
         }
 
@@ -223,13 +214,13 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             try
             {
                 // Your delete query
-                var query = @"DELETE FROM pc_student.repairStoreAddToCart
-                            WHERE table_id = @table_id;";
+                var query = @"DELETE FROM pc_student.BuildHomeEasyAddToCart
+                            WHERE id = @id;";
 
                 // Your parameters
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@table_id", rData.addInfo["table_id"])
+                    new MySqlParameter("@id", rData.addInfo["id"])
                 };
 
                 // Condition to execute the delete query
@@ -259,6 +250,57 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             }
             return resData;
         }
+
+         public async Task<responseData> UpdateCartById(requestData rData)
+        {
+            responseData resData = new responseData();
+
+            try
+            {
+                // Your update query
+                var query = @"UPDATE pc_student.BuildHomeEasyAddToCart 
+                            SET quantity = @quantity, 
+                                totalPrice = @totalPrice
+                           WHERE id = @id;";
+
+                // Your parameters
+                MySqlParameter[] myParam = new MySqlParameter[]
+                {
+
+                    new MySqlParameter("@id", rData.addInfo["id"]),
+                    new MySqlParameter("@quantity", rData.addInfo["quantity"]),
+                    new MySqlParameter("@totalPrice", rData.addInfo["totalPrice"])
+                };
+
+                // Condition to execute the update query
+                bool shouldExecuteUpdate = true;
+
+                if (shouldExecuteUpdate)
+                {
+                    // int rowsAffected = ds.ExecuteUpdateSQL(query, myParam);
+                    int rowsAffected = ds.ExecuteUpdateSQL(query, myParam);
+
+                    if (rowsAffected > 0)
+                    {
+                        resData.rData["rMessage"] = "UPDATE SUCCESSFULLY.";
+                    }
+                    else
+                    {
+                        resData.rData["rMessage"] = "No rows affected. Update failed.";
+                    }
+                }
+                else
+                {
+                    resData.rData["rMessage"] = "Condition not met. Update query not executed.";
+                }
+            }
+            catch (Exception ex)
+            {
+                resData.rData["rMessage"] = "Exception occurred: " + ex.Message;
+            }
+            return resData;
+        }
+        
 
 
     }
