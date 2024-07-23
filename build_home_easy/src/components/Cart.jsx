@@ -1,9 +1,11 @@
-import React, { useEffect, useId, useState } from 'react'
+import React, { createContext, useEffect, useId, useState } from 'react'
 import '../css/cart.css'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { SyncLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom';
+
+
 
 const Cart = () => {
 
@@ -12,7 +14,6 @@ const Cart = () => {
     let [editIndex,setEditIndex]=useState(null)
     let [editQuantity,setEditQuantity]=useState('')
     let [editToatalPrice,setToatalPrice]=useState(0)
-
 
     let navigate=useNavigate()
 
@@ -127,98 +128,95 @@ const Cart = () => {
     }
 
   return (
-    <div className='cart'>
+      <div className='cart'>
+        {
 
-      {
+          itemDetails.length===0 ?  
+          //   <div className='spinners'>
+          //     <SyncLoader color="#36D7B7" itemDetails={itemDetails} size={20} />
+          //   </div>
+          <>
+              <div className='cartNoItem'>
+                  <img src='../assests/empty-cart.png' alt="cartImage" />
+                  <button onClick={()=>navigate('/')}>Buy Now</button>
+              </div>
+          </>
+            :
+          <>
+            <div className='tableContainer'>
+                <table>
+                  <thead>
+                    <tr>
+                      {/* <th>Id</th> */}
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price Per Item</th>
+                      <th>Quantity</th>
+                      <th>Total Price</th>
+                      <th>Date And Time</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {itemDetails.map((item,index) => (
+                        <tr key={index}>
+                            {/* <td>{item.id}</td> */}
+                            <td><img src={item.itemImage} alt="image" className='profile'/></td>
+                            <td>{item.itemName}</td>
+                            <td>{item.pricePerItem} {item.pricePerItem2}</td>
 
-        itemDetails.length===0 ?  
-        //   <div className='spinners'>
-        //     <SyncLoader color="#36D7B7" itemDetails={itemDetails} size={20} />
-        //   </div>
-        <>
-            <div className='cartNoItem'>
-                <img src='../assests/empty-cart.png' alt="cartImage" />
-                <button onClick={()=>navigate('/')}>Buy Now</button>
-            </div>
-        </>
-          :
-        <>
-          <div className='tableContainer'>
-              <table>
-                <thead>
-                  <tr>
-                    {/* <th>Id</th> */}
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price Per Item</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Date And Time</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    {itemDetails.map((item,index) => (
-                      <tr key={index}>
-                          {/* <td>{item.id}</td> */}
-                          <td><img src={item.itemImage} alt="image" className='profile'/></td>
-                          <td>{item.itemName}</td>
-                          <td>{item.pricePerItem} {item.pricePerItem2}</td>
+                              {
+                                editIndex === index ?
+                                  <>
+                                      <td>
+                                          <input type="number" name="" id="" className='editQuantity'
+                                              value={editQuantity} 
+                                              onChange={(e) => handleInputChange(e.target.value, item.pricePerItem)} 
+                                          />
+                                      </td>
+                                      <td>
+                                          {editToatalPrice}
+                                      </td>
+                                  </>
+                                  :
+                                  <>
+                                      <td>{item.quantity}</td>
+                                      <td>{item.totalPrice}.00</td>
+                                  </>
+                              }
 
-                            {
-                               editIndex === index ?
-                                <>
-                                    <td>
-                                        <input type="number" name="" id="" className='editQuantity'
-                                            value={editQuantity} 
-                                            onChange={(e) => handleInputChange(e.target.value, item.pricePerItem)} 
-                                        />
-                                    </td>
-                                    <td>
-                                        {editToatalPrice}
-                                    </td>
-                                </>
-                                :
-                                <>
-                                    <td>{item.quantity}</td>
-                                    <td>{item.totalPrice}.00</td>
-                                </>
-                            }
-
-                          <td>{item.dateAndTime}</td>
-                          <td>
-                            <div className='action'>
-                          
-                               {editIndex === index ?
-                                    <>
-                                        <button onClick={() => handleEditSave(index)} className='edit-btn '>Save</button>
-                                        <button onClick={() => setEditIndex(null) } className='delete-btn '>Cancel</button>
-                                    </>
-                                     : 
-                                     <>
-                                        <button onClick={() => handleEditClick(index, item.quantity,item.pricePerItem)} className='edit-btn'>Edit</button>
-                                        <button 
-                                            onClick={()=>handleDeleteItem(item.id)} 
-                                            className='delete-btn'  
-                                        >Delete
-                                        </button>
-                                    </>
-                                }
-                             
-                            </div>
-                          </td>
-                        </tr>
-                      ))
-                    }
-                </tbody>
-              
-              </table>
-            </div>
-        </>
-      }
-
-
-    </div>
+                            <td>{item.dateAndTime}</td>
+                            <td>
+                              <div className='action'>
+                            
+                                {editIndex === index ?
+                                      <>
+                                          <button onClick={() => handleEditSave(index)} className='edit-btn '>Save</button>
+                                          <button onClick={() => setEditIndex(null) } className='delete-btn '>Cancel</button>
+                                      </>
+                                      : 
+                                      <>
+                                          <button onClick={() => handleEditClick(index, item.quantity,item.pricePerItem)} className='edit-btn'>Edit</button>
+                                          <button 
+                                              onClick={()=>handleDeleteItem(item.id)} 
+                                              className='delete-btn'  
+                                          >Delete
+                                          </button>
+                                      </>
+                                  }
+                              
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      }
+                  </tbody>
+                
+                </table>
+              </div>
+          </>
+        }
+      </div>
   )
 }
 

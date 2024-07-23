@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom'
 import "../css/nav.css"
 // import '.../css/nav.css'
@@ -6,10 +6,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import axios from 'axios';
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import { toast } from 'react-toastify';
 
 
 
-const Nav = ({list}) => {
+const Nav = ({list,addedCart,userDetails}) => {
+    console.log("app userDetails",userDetails)
 
     let navigate=useNavigate()
 
@@ -28,13 +30,16 @@ const Nav = ({list}) => {
     useEffect(()=>{
         let user=localStorage.getItem('user')
         setCheckUserLogin(user)
-        console.log("user",checkUserLogin)
+        // console.log("user",checkUserLogin)
+    },[])
+    useEffect(()=>{
+
     },[checkUserLogin])
 
     useEffect(()=>{
         let admin=localStorage.getItem('admin')
         setCheckAdminLogin(admin)   
-        console.log("admin",checkAdminLogin)
+        // console.log("admin",checkAdminLogin)
     },[checkAdminLogin])
 
     useEffect(()=>{
@@ -123,9 +128,25 @@ const Nav = ({list}) => {
                                 )
                             }
                         <div className='name-profile'>
-                            <h3>Admin
-                                <RiLogoutBoxRLine  onClick={()=>{localStorage.removeItem('admin');navigate('/login')}}/> 
-                            </h3>  
+                            {
+                                checkAdminLogin ?
+                                <>
+                                    <h3 style={{fontSize:'1vw'}} >Admin 
+                                        <RiLogoutBoxRLine  
+                                            onClick={()=>{
+                                                if(window.confirm('Are You Sure')){
+                                                    localStorage.removeItem('admin');
+                                                    navigate('/login')
+                                                }
+                                            }}
+                                        /> 
+                                    </h3>  
+                                </>
+                                :
+                                <>
+                                    <h3 onClick={()=>navigate('/login')} style={{fontSize:'1vw'}} >Login</h3>
+                                </>
+                            }
                             {/* <h3>Name</h3> */}
                             {/* <img src="xxx" alt="Profile" /> */}
                             <CgProfile className="icon" onClick={toggleProfile} />
@@ -199,16 +220,26 @@ const Nav = ({list}) => {
                                 )
                             }
                         <div className='name-profile'>
-                            
-                            <h3>Name 
-                                <RiLogoutBoxRLine  
-                                    onClick={()=>{
-                                        if(window.confirm('Are You Sure')){
-                                            localStorage.removeItem('user');
-                                            navigate('/login')
-                                        }
-                                    }}/> 
-                            </h3>  
+                            {
+                                checkUserLogin ?
+                                <>
+                                    <h3 style={{fontSize:'1.1vw'}} > {userDetails.first_name} 
+                                        <RiLogoutBoxRLine
+                                            onClick={()=>{
+                                                if(window.confirm('Are You Sure')){
+                                                    localStorage.removeItem('user');
+                                                    toast.success('Logout Successful')
+                                                    navigate('/login')
+                                                }   
+                                        }}/> 
+                                    </h3>  
+                                </>
+                                :
+                                <>
+                                    <h3 onClick={()=>navigate('/login')} style={{fontSize:'1vw'}} >Login</h3>
+                                </>
+                            }
+                         
                             {/* <h3>Name</h3> */}
                             {/* <img src="xxx" alt="Profile" /> */}
                             <CgProfile className="icon" onClick={toggleProfile} />
@@ -244,9 +275,25 @@ const Nav = ({list}) => {
                 </div>
 
                 <div className={`profile-dropdown ${isProfileOpen ? 'open' : ''}`}>
-                        <NavLink to='/profile' className={(e)=>{return e.isActive?"active":" "}} >My Profile</NavLink>
-                        <NavLink to='/cart'>My Orders</NavLink>
-                        <NavLink to='/logout'>Logout</NavLink>
+                        <NavLink to={'/profile'} className={(e)=>{return e.isActive?"active":" "}} >My Profile</NavLink>
+                        <NavLink to={'/cart'} > My Orders <p className='myOrder'>{addedCart.length}</p></NavLink>
+                        {
+                            checkUserLogin ?
+                            <>
+                                <NavLink 
+                                    onClick={()=>{
+                                        if(window.confirm('Are you sure')){
+                                            localStorage.removeItem('user');
+                                            toast.success('Logout Successful');
+                                            to=('/login')
+                                        }
+                                    }}
+                                >Logout</NavLink>
+                            </>
+                            :
+                            <NavLink to='/login'>Login</NavLink>
+                        }
+                      
                 </div>
             </>
         }

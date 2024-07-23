@@ -15,6 +15,13 @@ const Item = () => {
     let navigate=useNavigate()
 
     useEffect(()=>{
+      let user=localStorage.getItem('user')
+      if(user===null || user===''){
+        navigate('/login')
+      }
+    },[navigate])
+
+    useEffect(()=>{
         console.log("itemDetails2 ",itemDetails);
     },[itemDetails])
 

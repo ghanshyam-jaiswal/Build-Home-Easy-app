@@ -200,6 +200,18 @@
     visibility: visible;
 }
 
+.myOrder{
+  width: 11%;
+  height: 43%;
+  background-color: rgb(204, 57, 57);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-left: 2%;
+}
+
 .profile-dropdown a {
     /* border: 1px solid; */
     width: 100%;
