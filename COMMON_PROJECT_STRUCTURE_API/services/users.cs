@@ -163,7 +163,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             return resData;
         }
 
-               public async Task<responseData> DeleteUser(requestData rData)
+        public async Task<responseData> DeleteUser(requestData rData)
         {
             responseData resData = new responseData();
 
@@ -198,6 +198,77 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 else
                 {
                     resData.rData["rMessage"] = "Condition not met. Delete query not executed.";
+                }
+            }
+            catch (Exception ex)
+            {
+                resData.rData["rMessage"] = "Exception occurred: " + ex.Message;
+            }
+            return resData;
+        }
+
+        public async Task<responseData> UpdateUserById(requestData rData)
+        {
+            responseData resData = new responseData();
+
+            try
+            {
+                // id, first_name, last_name, gender, email, password, contact, street_address1, street_address2, city, state, pincode, country, profile
+                
+                var query = @"UPDATE pc_student.BuildHomeEasyUser 
+                            SET first_name = @FIRST_NAME, 
+                                  last_name = @LAST_NAME,
+                                  gender=@gender, 
+                                  email = @EMAIL,
+                                  password = @PASSWORD,
+                                  contact = @CONTACT, 
+                                  street_address1 = @STREET_ADDRESS1, 
+                                  street_address2 = @STREET_ADDRESS2, 
+                                  city = @CITY, 
+                                  state = @STATE, 
+                                  pincode = @PINCODE, 
+                                  country = @COUNTRY,
+                                  profile = @PROFILE
+                            WHERE id = @id;";
+
+                MySqlParameter[] myParam = new MySqlParameter[]
+                {
+
+                    new MySqlParameter("@id", rData.addInfo["id"]),
+                    new MySqlParameter("@FIRST_NAME", rData.addInfo["first_name"]),
+                    new MySqlParameter("@LAST_NAME", rData.addInfo["last_name"]),
+                    new MySqlParameter("@gender", rData.addInfo["gender"]),
+                    new MySqlParameter("@EMAIL", rData.addInfo["email"]),
+                    new MySqlParameter("@PASSWORD", rData.addInfo["password"]),
+                    new MySqlParameter("@CONTACT", rData.addInfo["contact"]),
+                    new MySqlParameter("@STREET_ADDRESS1", rData.addInfo["street_address1"]),
+                    new MySqlParameter("@STREET_ADDRESS2", rData.addInfo["street_address2"]),
+                    new MySqlParameter("@CITY", rData.addInfo["city"]),
+                    new MySqlParameter("@STATE", rData.addInfo["state"]),
+                    new MySqlParameter("@PINCODE", rData.addInfo["pincode"]),
+                    new MySqlParameter("@COUNTRY", rData.addInfo["country"]),
+                    new MySqlParameter("@PROFILE", rData.addInfo["profile"])
+
+                };
+
+                bool shouldExecuteUpdate = true;
+
+                if (shouldExecuteUpdate)
+                {
+                    int rowsAffected = ds.ExecuteUpdateSQL(query, myParam);
+
+                    if (rowsAffected > 0)
+                    {
+                        resData.rData["rMessage"] = "UPDATE SUCCESSFULLY.";
+                    }
+                    else
+                    {
+                        resData.rData["rMessage"] = "No rows affected. Update failed.";
+                    }
+                }
+                else
+                {
+                    resData.rData["rMessage"] = "Condition not met. Update query not executed.";
                 }
             }
             catch (Exception ex)

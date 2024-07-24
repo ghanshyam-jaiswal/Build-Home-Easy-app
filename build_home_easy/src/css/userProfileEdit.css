@@ -1,45 +1,89 @@
 .userProfileEdit{
     width: 100vw;
     height: 90vh;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
-.userProfileEdit .edit{
-    width: 100%;
-    height: 5%;
+
+.userProfileEdit input{
+    width: 20vw;
+    height: 4vh;
+    border-radius: 7px;
     border: 1px solid;
+    padding-left: 2%;
+}
+.userProfileEdit select{
+    width: 20vw;
+    height: 4vh;
+    border-radius: 7px;
+    border: 1px solid;
+    font-size: 0.85vw;
+}
+
+.userProfileEdit .edit{
+    width: 97%;
+    height: 5%;
+    /* border: 1px solid; */
     display: flex;
+    gap: 1.5%;
     justify-content: right;
     align-items: center;
 }
 .userProfileEdit .edit button{
     width: 8%;
     height: 100%;
-    margin-right: 1%;
+    /* margin-right: 1%; */
     border-radius: 7px;
     font-size: 0.8vw;
 }
 .userProfileEdit .profile{
-    width: 100%;
+    width: 97%;
     height: 30%;
-    border: 1px solid;
+    /* border: 1px solid; */
+    box-shadow: 0 0 4px rgb(187, 178, 178);
+    border-radius: 7px;
     display: flex;
     flex-wrap: wrap;
     gap: 5%;
     justify-content: left;
     align-items: center;
+
 }
-.userProfileEdit .profile img{
-    width: 15%;
-    height: 100%;
+.userProfileEdit .profile div{
+    border: 1px solid;
+    width: 12%;
+    height: 90%;
+    margin-left: 2%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.userProfileEdit .profile div p{
+    width: 25%;
+    height: 10%;
+    /* border: 1px solid ; */
+    color: white;
+    background-color: rgb(134, 138, 141);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* .userProfileEdit .profile div img{
+    width: 90%;
+    height: 90%;
     border: 1px solid;
     border-radius: 50%;
     margin-left: 2%;
 
-}
+} */
 
 .userProfileEdit .profile h1{
     /* border: 1px solid; */
@@ -84,3 +128,4 @@
 .userProfileEdit .details .info p{
     font-size: 1.2vw;
 }
+

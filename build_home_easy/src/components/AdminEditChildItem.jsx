@@ -174,7 +174,7 @@ const AdminEditChildItem = () => {
               onClick={handleUpload}
               >Upload
           </button>
-          <button onClick={()=>navigate('/admin/viewItem',{state:{item}})}>Cancel</button>
+          <button onClick={()=>navigate(`/admin/viewItem/${item.name}`,{state:{item}})}>Cancel</button>
       </div>
   </div>
   )

@@ -26,6 +26,8 @@ import Payment from './components/Payment'
 import Cart from './components/Cart'
 import UserProfile from './components/UserProfile'
 import UserProfileEdit from './components/UserProfileEdit'
+import AdminDashboard from './components/AdminDashboard'
+import AdminProfile from './components/AdminProfile'
 
 const App = () => {
 
@@ -48,6 +50,7 @@ const App = () => {
         fetchAddedCart()
         // console.log("App userEmail2",userEmail)
         // console.log("app cart",addedCart)
+        console.log("app userDetails",userDetails)
     }
   },[userEmail])
 
@@ -139,11 +142,13 @@ const App = () => {
                 {/* <Route path="/admin" element={<Admin/>} > */}
                     {/* <Route index element={<Navigate to="/admin/users" />} /> */}
                     {/* <Route path="/admin/products" element={<AdminProduct/>} ></Route> */}
+                    <Route path="/adminProfile" element={<AdminProfile/>} ></Route>
+                    <Route path="/adminDashboard" element={<AdminDashboard/>} ></Route>
                     <Route path="/admin/allItems" element={<AdminAllItems/>} ></Route>
                     <Route path="/admin/editItem" element={<AdminEditItem/>} ></Route>
                     <Route path="/admin/updateItem/:id" element={<AdminUpdateItem/>} ></Route>
                     <Route path="/admin/addItem" element={<AdminAddItem/>} ></Route>
-                    <Route path="/admin/viewItem" element={<AdminViewItem/>} ></Route>
+                    <Route path="/admin/viewItem/:name" element={<AdminViewItem/>} ></Route>
                     <Route path="/admin/addChildItem" element={<AdminAddChildItem/>} ></Route>
                     <Route path="/admin/editChildItem" element={<AdminEditChildItem/>} ></Route>
                     <Route path="/admin/users" element={<AdminUsers/>} ></Route>

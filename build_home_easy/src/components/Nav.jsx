@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 
 
 const Nav = ({list,addedCart,userDetails}) => {
-    console.log("app userDetails",userDetails)
+    console.log("nav userDetails",userDetails)
 
     let navigate=useNavigate()
 
@@ -113,9 +113,12 @@ const Nav = ({list,addedCart,userDetails}) => {
                                 <div className='search-results'>
                                     {filteredItems.map((item, index) => (
                                         <div key={index} className='search-result-item'>
-                                            <NavLink to={`/category/${item.name}`} onClick={() => setSearchQuery('')}>
+                                            {/* <NavLink to={`/admin/viewItem/${item.name}`} onClick={() => setSearchQuery('')}>
                                                 {item.name}
-                                            </NavLink>
+                                            </NavLink> */}
+                                            <button onClick={()=>{ navigate(`/admin/viewItem/${item.name}`,{state:{item}}) ; setSearchQuery('')} }  style={{fontSize:'0.75vw',border:'none',backgroundColor:'white',cursor:'pointer'}}>
+                                                {item.name}
+                                            </button>
                                         </div>
                                     ))}
                                 </div>
@@ -161,6 +164,7 @@ const Nav = ({list,addedCart,userDetails}) => {
 
                 <div className={`sidebar ${isOpen ? 'open' : ''}`}>
                     <div className='links'>
+                        <NavLink to='/adminDashboard' className={(e)=>{return e.isActive?"active":" "}} >Dashboard</NavLink>
                         <NavLink to='/admin/users' className={(e)=>{return e.isActive?"active":" "}} >Users</NavLink>
                         <NavLink to='/admin/allItems' className={(e)=>{return e.isActive?"active":" "}} >Items</NavLink>
                         <NavLink to='/admin/orders' className={(e)=>{return e.isActive?"active":" "}} >Orders</NavLink>
@@ -169,8 +173,16 @@ const Nav = ({list,addedCart,userDetails}) => {
                 </div>
 
                 <div className={`profile-dropdown ${isProfileOpen ? 'open' : ''}`}>
-                    <NavLink to='/profile' className={(e)=>{return e.isActive?"active":" "}} >Profile</NavLink>
-                    <NavLink to='/logout'>Logout</NavLink>
+                    <NavLink to='/adminProfile' className={(e)=>{return e.isActive?"active":" "}} >Profile</NavLink>
+                    <div 
+                        // style={{width:'100%',height:'20%',display:'flex',justifyContent:'center',alignItems:'center'}}
+                        onClick={()=>{
+                            if(window.confirm('Are you sure')){
+                                localStorage.removeItem('admin');
+                                navigate('/login')
+                            }
+                        }}>Logout
+                    </div>
                 </div>
             </>
 

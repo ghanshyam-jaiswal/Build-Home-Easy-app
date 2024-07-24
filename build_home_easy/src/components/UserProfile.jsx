@@ -46,7 +46,7 @@ const UserProfile = ({userDetails}) => {
             <button onClick={()=>{navigate('/profileEdit',{state:{userDetails}})}}>+ Edit Profile</button>
         </div>
         <div className="profile">
-           <img src="../assests/user-profile-logo-img.jpg" alt="img" />
+           <img src={`${userDetails.profile || '../assests/user-profile-logo-img.jpg'}`} alt="img" />
            <h1>{userDetails.first_name} {userDetails.last_name}</h1>
         </div>
         <div className="details">

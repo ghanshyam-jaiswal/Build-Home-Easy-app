@@ -106,7 +106,7 @@ const AdminAllItems = () => {
                           <td>
                             <div className='action'>
                           
-                              <button onClick={()=>navigate("/admin/viewItem",{state:{item}})} className='view-btn'>View</button>
+                              <button onClick={()=>navigate(`/admin/viewItem/${item.name}`,{state:{item}})} className='view-btn'>View</button>
                               <button onClick={()=>handleEdit(item)} className='edit-btn'>Edit</button>
                               <button onClick={()=>handleDeleteItem(item.id)} className='delete-btn'  >Delete</button>
                             </div>

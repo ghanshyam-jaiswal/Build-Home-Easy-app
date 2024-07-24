@@ -57,7 +57,7 @@ const Login = () => {
           localStorage.setItem('admin',adminResponse2.data.rData.users[0].email);
           toast.success('Login Successful');
           // navigate('/admin');
-          navigate('/admin/allItems');
+          navigate('/adminDashboard');
         } 
         catch (error)
         {

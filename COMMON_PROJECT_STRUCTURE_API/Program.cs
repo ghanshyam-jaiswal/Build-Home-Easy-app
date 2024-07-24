@@ -24,6 +24,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
         s.AddSingleton<admin>();
         s.AddSingleton<product>();
         s.AddSingleton<addToCart>();
+        s.AddSingleton<countData>();
         s.AddSingleton<dbServices>();
 
 
@@ -72,6 +73,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
             // var user = e.ServiceProvider.GetRequiredService<users>();
             var addToCart = e.ServiceProvider.GetRequiredService<addToCart>();
             var admin = e.ServiceProvider.GetRequiredService<admin>();
+            var countData = e.ServiceProvider.GetRequiredService<countData>();
 
             e.MapPost("login",
             [AllowAnonymous] async (HttpContext http) =>
@@ -80,6 +82,56 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 requestData rData = JsonSerializer.Deserialize<requestData>(body);
                 if (rData.eventID == "1001") // update
                     await http.Response.WriteAsJsonAsync(await login.Login(rData));
+            });
+
+            e.MapPost("homeCountContact",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received signup request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await countData.CountContact(rData));
+            });
+
+            e.MapPost("homeCountItems",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received signup request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await countData.CountItems(rData));
+            });
+
+            e.MapPost("homeCountUsers",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received signup request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await countData.CountUsers(rData));
+            });
+
+            e.MapPost("homeCountAddToCart",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received signup request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await countData.CountAddToCart(rData));
+            });
+
+            e.MapPost("homeCountTotalIncome",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received signup request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await countData.CountTotalIncome(rData));
             });
 
             e.MapPost("homeLogin",
@@ -217,6 +269,18 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(await users.DeleteUser(rData));
                 }
             });
+            e.MapPost("homeUpdateUserById",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received get users request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // getUsers
+                {
+                    // Call the GetAllUsers method directly and return its result as JSON response
+                    await http.Response.WriteAsJsonAsync(await users.UpdateUserById(rData));
+                }
+            });
 
             e.MapPost("homeAddToCart",
             [AllowAnonymous] async (HttpContext http) =>
@@ -231,7 +295,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 }
             });
 
-            e.MapPost("getAllCarts",
+            e.MapPost("homeGetAllCarts",
             [AllowAnonymous] async (HttpContext http) =>
             {
                 var body = await new StreamReader(http.Request.Body).ReadToEndAsync();

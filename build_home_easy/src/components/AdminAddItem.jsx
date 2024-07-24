@@ -164,7 +164,7 @@ const AdminAddItem = () => {
             <img
               src={itemImage}
               alt="img"
-              style={{ height: "100%", width: "20%" }}
+              style={{ height: "100%", width: "13%" }}
             />
           )}
         </div>
@@ -198,7 +198,7 @@ const AdminAddItem = () => {
                 <img
                 src={childItemImage}
                 alt="img"
-                style={{ height: "100%", width: "20%" }}
+                style={{ height: "100%", width: "15%" }}
                 />
             )}
           </div>

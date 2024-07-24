@@ -68,9 +68,12 @@ const Payment = () => {
           pricePerItem2: childItem.perItem,
           quantity: quantity,
           totalPrice:totalPrice,
+          userName:userDetails[0].first_name + " " + userDetails[0].last_name ,
+          userContact:userDetails[0].contact,
+          userAddress:userDetails[0].street_address1 + ", " + userDetails[0].street_address2
         }
       }
-      console.log("payload",payload)
+      // console.log("payload",payload)
       const response = await axios.post('http://localhost:5164/homeAddToCart', payload);
         console.log("addToCart response",response)
         if(response.data.rData.rMessage==='Invalid price'){

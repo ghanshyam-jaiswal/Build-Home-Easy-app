@@ -117,7 +117,7 @@ const adminAddChildItem = () => {
                 <img
                 src={itemImage}
                 alt="img"
-                style={{ height: "100%", width: "20%" }}
+                style={{ height: "100%", width: "17%" }}
                 />
             )}
           </div>
@@ -171,7 +171,7 @@ const adminAddChildItem = () => {
                 >Clear
             </button>
             <button 
-                onClick={()=>navigate('/admin/viewItem',{state:{item}})}
+                onClick={()=>navigate(`/admin/viewItem/${item.name}`,{state:{item}})}
                 >Cancel
             </button>
         </div>

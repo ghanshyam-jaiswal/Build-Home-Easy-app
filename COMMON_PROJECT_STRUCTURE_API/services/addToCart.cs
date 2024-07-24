@@ -31,8 +31,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 else
                 {
                    var sq = @"INSERT INTO pc_student.BuildHomeEasyAddToCart
-                    (userId, itemImage, itemName, pricePerItem, pricePerItem2, quantity, totalPrice) 
-                    VALUES (@userId, @itemImage, @itemName,  @pricePerItem, @pricePerItem2, @quantity, @totalPrice)";
+                    (userId, itemImage, itemName, pricePerItem, pricePerItem2, quantity, totalPrice, userName, userContact, userAddress) 
+                    VALUES (@userId, @itemImage, @itemName,  @pricePerItem, @pricePerItem2, @quantity, @totalPrice, @userName, @userContact, @userAddress)";
 
                     // if (!decimal.TryParse(rData.addInfo["productPrice"].ToString(), out decimal productPrice))
                     // {
@@ -49,7 +49,10 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         new MySqlParameter("@pricePerItem",  rData.addInfo["pricePerItem"]),
                         new MySqlParameter("@pricePerItem2",  rData.addInfo["pricePerItem2"]),
                         new MySqlParameter("@quantity", rData.addInfo["quantity"]),
-                        new MySqlParameter("@totalPrice", rData.addInfo["totalPrice"])
+                        new MySqlParameter("@totalPrice", rData.addInfo["totalPrice"]),
+                        new MySqlParameter("@userName", rData.addInfo["userName"]),
+                        new MySqlParameter("@userContact", rData.addInfo["userContact"]),
+                        new MySqlParameter("@userAddress", rData.addInfo["userAddress"])
                         // new MySqlParameter("@dateAndTime", rData.addInfo["dateAndTime"]),
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
@@ -101,19 +104,20 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                                 var user = new
                                 {
-                                    table_id = rowData.ElementAtOrDefault(0),
-                                    id = rowData.ElementAtOrDefault(1),
-                                    dateAndTime = rowData.ElementAtOrDefault(2),
-                                    productName = rowData.ElementAtOrDefault(3),
-                                    productImage = rowData.ElementAtOrDefault(4),
-                                    productPrice = rowData.ElementAtOrDefault(5),
-                                    brand = rowData.ElementAtOrDefault(6),
-                                    model = rowData.ElementAtOrDefault(7),
-                                    selectedProblem = rowData.ElementAtOrDefault(8),
-                                    otherProblem = rowData.ElementAtOrDefault(9),
-                                    uploadedImages = rowData.ElementAtOrDefault(10),
-                                    userName = rowData.ElementAtOrDefault(11),
-                                    contact = rowData.ElementAtOrDefault(12),
+                                    // id, userId, itemImage, itemName, pricePerItem, pricePerItem2, quantity, totalPrice, dateAndTime
+                                    id = rowData.ElementAtOrDefault(0),
+                                    userId = rowData.ElementAtOrDefault(1),
+                                    itemImage = rowData.ElementAtOrDefault(2),
+                                    itemName = rowData.ElementAtOrDefault(3),
+                                    pricePerItem = rowData.ElementAtOrDefault(4),
+                                    pricePerItem2 = rowData.ElementAtOrDefault(5),
+                                    quantity = rowData.ElementAtOrDefault(6),
+                                    totalPrice = rowData.ElementAtOrDefault(7),
+                                    dateAndTime = rowData.ElementAtOrDefault(8),
+                                    userName = rowData.ElementAtOrDefault(9),
+                                    userContact = rowData.ElementAtOrDefault(10),
+                                    userAddress = rowData.ElementAtOrDefault(11)
+                                
                                 };
 
                                 usersList.Add(user);
