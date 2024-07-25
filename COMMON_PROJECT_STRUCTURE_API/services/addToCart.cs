@@ -11,7 +11,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
     {
         dbServices ds = new dbServices();
 
-         public async Task<responseData> AddCart(requestData rData)
+        public async Task<responseData> AddCart(requestData rData)
         {
             responseData resData = new responseData();
             try
@@ -59,6 +59,31 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 
                     resData.rData["rMessage"] = "Added Successful";
                 }
+            }
+            catch (Exception ex)
+            {
+                resData.rData["rMessage"] = "An error occurred: " + ex.Message;
+            }
+            return resData;
+        }
+        public async Task<responseData> AddCartCheckItem(requestData rData)
+        {
+            responseData resData = new responseData();
+            try
+            {
+                var query = @"SELECT * FROM pc_student.BuildHomeEasyAddToCart WHERE userId = @userId AND itemName=@itemName";
+                MySqlParameter[] myParam = new MySqlParameter[]
+                {
+                    new MySqlParameter("@userId", rData.addInfo["userId"]),
+                    new MySqlParameter("@itemName", rData.addInfo["itemName"])
+                };
+                var dbData = ds.executeSQL(query, myParam);
+                
+                if (dbData[0].Count() > 0)
+                {
+                    resData.rData["rMessage"] = "Duplicate Credentials";
+                }
+                
             }
             catch (Exception ex)
             {

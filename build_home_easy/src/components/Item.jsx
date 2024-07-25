@@ -23,7 +23,7 @@ const Item = () => {
 
     useEffect(()=>{
         console.log("itemDetails2 ",itemDetails);
-    },[itemDetails])
+    },[itemDetails,item])
 
     useEffect(() => {
         fetchProducts(); 

@@ -28,6 +28,7 @@ import UserProfile from './components/UserProfile'
 import UserProfileEdit from './components/UserProfileEdit'
 import AdminDashboard from './components/AdminDashboard'
 import AdminProfile from './components/AdminProfile'
+import About from './components/About'
 
 const App = () => {
 
@@ -60,7 +61,7 @@ const App = () => {
 
   useEffect(()=>{
     // console.log("Product List updated",list)
-  },[list])
+  },[list,addedCart,userDetails,userEmail])
 
   let fetchProducts = async () => {
     try {
@@ -138,6 +139,7 @@ const App = () => {
                 <Route path='/cart' element={<Cart/>}></Route>
                 <Route path='/profile' element={<UserProfile userDetails={userDetails} />}></Route>
                 <Route path='/profileEdit' element={<UserProfileEdit />}></Route>
+                <Route path='/about' element={<About />}></Route>
 
                 {/* <Route path="/admin" element={<Admin/>} > */}
                     {/* <Route index element={<Navigate to="/admin/users" />} /> */}

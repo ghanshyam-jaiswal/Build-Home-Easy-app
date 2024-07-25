@@ -28,19 +28,21 @@ const Nav = ({list,addedCart,userDetails}) => {
     let [checkAdminLogin,setCheckAdminLogin]=useState('')
 
     useEffect(()=>{
+    },[list,addedCart, userDetails, checkUserLogin,checkAdminLogin,userDetails,addedCart, searchQuery,filteredItems,searchPerformed])
+
+
+    useEffect(()=>{
         let user=localStorage.getItem('user')
         setCheckUserLogin(user)
         // console.log("user",checkUserLogin)
     },[])
-    useEffect(()=>{
 
-    },[checkUserLogin])
-
+   
     useEffect(()=>{
         let admin=localStorage.getItem('admin')
         setCheckAdminLogin(admin)   
         // console.log("admin",checkAdminLogin)
-    },[checkAdminLogin])
+    },[])
 
     useEffect(()=>{
         setNameList(list)

@@ -49,6 +49,10 @@ const UserProfileEdit = () => {
         profile:''
     })
 
+    // useEffect(()=>{
+
+    // },[userImage,editDetails,userDetails])
+
     let handleImage = (e) => {
         const file2 = e.target.files[0];
         const reader = new FileReader();
@@ -104,7 +108,7 @@ const UserProfileEdit = () => {
                 state: editDetails.state,
                 pincode: editDetails.pincode,
                 country: editDetails.country,
-                profile: userImage,
+                profile: userImage || editDetails.profile,
             }
         }
 

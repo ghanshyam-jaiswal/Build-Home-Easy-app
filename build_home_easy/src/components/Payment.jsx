@@ -22,7 +22,6 @@ const Payment = () => {
     useEffect( () => {
       let userEmail = localStorage.getItem('user');
       if (userEmail) {
-        // console.log("userEmail",userEmail)
         async function fetchData(){
           try{
             const response2 = await axios.post('http://localhost:5164/homeGetUserByEmail', {
@@ -33,10 +32,6 @@ const Payment = () => {
                   });
             // localStorage.setItem('user',response2.data.rData.users[0].email);
             setUserDetails(response2.data.rData.users)
-            // console.log("userDetails",userDetails)
-            // toast.success('Login Successful');
-            // let user=localStorage.getItem("user")
-            // navigate('/');
           } 
           catch (error)
           {
@@ -44,7 +39,6 @@ const Payment = () => {
           }
         }
         fetchData()
-   
         } 
       else 
       {
@@ -56,8 +50,56 @@ const Payment = () => {
       console.log("userDetails2",userDetails)
     },[userDetails])
 
+    let handleProceedToPay= async ()=>{
+      let payload={
+        eventID: "1001",
+        addInfo: {
+          userId: userDetails[0].id,
+          itemName: childItem.name
+        }
+      }
+      const response = await axios.post('http://localhost:5164/homeAddToCart', payload);
+        // console.log("addToCart response",response)
+        if(response.data.rData.rMessage==='Duplicate Credentials'){
+            toast.error("Already Exists")
+            navigate(`/item/${item.name}`,{state:{item}})
+        }
+        else{
+          handleProceedToPayRazorPay()
+        }
+    }
+
+    const handleProceedToPayRazorPay = async () => {
+      const options = {
+        key: "rzp_test_90ZILGzyAn0OTE",
+        key_secret: "4IfoRyvUFIy99YpDscnUxT9R",
+        amount: totalPrice * 100,
+        currency: 'INR',
+        name: 'Build Home Easy',
+        description: 'Payment to place your order',
+        handler: function (response) {
+          // console.log("handel cheacking",response);
+          // alert('Successful');
+          handleProceedToPayUploadData();
+        },
+        prefill: {
+          // name:'customerName',
+          // email: 'customer@example.com',
+          // contact: '1234567890'
+          name: userDetails[0].first_name + " " + userDetails[0].last_name,
+          email: userDetails[0].email,
+          contact: userDetails[0].contact
+        },
+        theme: {
+          color: '#3399cc'
+        }
+      };
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    };
     
-    let handleUpload= async (e)=>{
+    let handleProceedToPayUploadData= async (e)=>{
+      // console.log("data submited")
       let payload={
         eventID: "1001",
         addInfo: {
@@ -70,11 +112,11 @@ const Payment = () => {
           totalPrice:totalPrice,
           userName:userDetails[0].first_name + " " + userDetails[0].last_name ,
           userContact:userDetails[0].contact,
-          userAddress:userDetails[0].street_address1 + ", " + userDetails[0].street_address2
+          userAddress:userDetails[0].street_address1 + " " + userDetails[0].street_address2
         }
       }
-      // console.log("payload",payload)
-      const response = await axios.post('http://localhost:5164/homeAddToCart', payload);
+        // console.log("payload",payload)
+        const response = await axios.post('http://localhost:5164/homeAddToCart', payload);
         console.log("addToCart response",response)
         if(response.data.rData.rMessage==='Invalid price'){
             toast.error("Invalid Product Price")
@@ -85,7 +127,7 @@ const Payment = () => {
         else if(response.data.rData.rMessage==='Added Successful'){
           toast.success("Successful")
           navigate('/')
-      }
+        }
     }
 
   return (
@@ -94,7 +136,7 @@ const Payment = () => {
         {/* <h1>Quantity : {quantity}</h1> */}
         <h1>Payment : {totalPrice}</h1>
         {/* <button className='btn-proceed' onClick={()=>{addToCart(selectedCard);thankYou()}}>Proceed</button> */}
-        <button className='btn-proceed' onClick={()=>{handleUpload()}}>Proceed</button>
+        <button className='btn-proceed' onClick={()=>{handleProceedToPay()}}>Proceed</button>
         <button className='btn-cancel' 
           onClick={()=>{
             navigate(`/item/${item.name}`,{state:{item}})
