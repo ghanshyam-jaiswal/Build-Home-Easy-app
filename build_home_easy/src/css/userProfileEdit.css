@@ -19,7 +19,7 @@
     width: 20vw;
     height: 4vh;
     border-radius: 7px;
-    border: 1px solid;
+    /* border: 1px solid; */
     font-size: 0.85vw;
 }
 
@@ -129,3 +129,110 @@
     font-size: 1.2vw;
 }
 
+
+
+
+
+/* Media Queries */
+
+
+
+@media only screen and (max-width: 1024px) {
+    .userProfileEdit input,
+    .userProfileEdit select {
+        /* width: 25vw; */
+        font-size: 1vw;
+    }
+
+    .userProfileEdit .edit button {
+        /* font-size: 1vw; */
+        height: 80%;
+    }
+
+    .userProfileEdit .profile div {
+        width: 15%;
+        height: 65%;
+    }
+
+    .userProfileEdit .details .info h3 {
+        font-size: 1.1vw;
+    }
+   
+}
+
+@media only screen and (max-width: 768px) {
+    .userProfileEdit input,
+    .userProfileEdit select {
+        /* width: 30vw; */
+        height: 13%;
+        font-size: 1.2vw;
+    }
+
+    .userProfileEdit .edit button {
+        /* font-size: 1.2vw; */
+        height: 65%;
+    }
+
+    .userProfileEdit .profile div {
+        width: 20%;
+        height: 62%;
+    }
+
+    .userProfileEdit select{
+        height: 3vh;
+    }
+
+    .userProfileEdit .profile h1 {
+        font-size: 2.5vw;
+    }
+
+    .userProfileEdit .details .info div {
+        font-size: 1.3vw;
+    }
+
+    .userProfileEdit .details .info input{
+        /* border: 1px solid; */
+        height: 3vh;
+    }
+    .userProfileEdit .details .info h3 {
+        font-size: 1.3vw;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    .userProfileEdit input,
+    .userProfileEdit select {
+        /* width: 35vw; */
+        font-size: 1.5vw;
+    }
+
+    .userProfileEdit .edit button {
+        /* font-size: 1.5vw; */
+        height: 50%;
+    }
+
+    .userProfileEdit .profile{
+        height: 20%;
+    }
+
+    .userProfileEdit .profile div {
+        /* width: 25%; */
+    }
+
+    .userProfileEdit .profile h1 {
+        font-size: 3vw;
+    }
+
+    .userProfileEdit .details .info div {
+        font-size: 1.5vw;
+    }
+
+    .userProfileEdit .details .info h3 {
+        font-size: 1.5vw;
+    }
+
+    .userProfileEdit .details .info p {
+        font-size: 2vw;
+    }
+}

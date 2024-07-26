@@ -322,3 +322,181 @@
   text-decoration: underline;
   /* background-color: #555; */
 }
+
+
+
+
+
+@media only screen and (max-width: 1024px) {
+  .logo-name {
+      width: 15%;
+  }
+
+  .logo-name .name {
+      font-size: 1.2vw;
+  }
+
+  .burger {
+      font-size: 2vw;
+  }
+
+  .search-profile-name input {
+      width: 30%;
+      font-size: 1vw;
+  }
+
+  .search-profile-name .name-profile .icon {
+      font-size: 2vw;
+  }
+
+  .profile-dropdown a {
+      font-size: 1vw;
+  }
+
+  .sidebar .links a,
+  .sidebar .links .category {
+      font-size: 1.2vw;
+  }
+
+  .sidebar .links .categoryName {
+      font-size: 1.2vw;
+  }
+
+  .search-results {
+      width: 25%;
+      font-size: 1.2vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav {
+      /* flex-direction: column; */
+      /* border: 3px solid white; */
+      height: auto;
+      padding: 10px 0;
+  }
+
+  .logo-name {
+      width: 20%;
+  }
+
+  .logo-name .name {
+      font-size: 1.5vw;
+  }
+
+  .burger {
+      font-size: 2.5vw;
+      width: auto;
+  }
+
+  .search-profile-name {
+      width: 70%;
+      /* flex-direction: column; */
+      /* border: 1px solid white; */
+
+  }
+
+  .search-profile-name input {
+      width: 190%;
+      height: 3.7em;
+      /* height: 80%; */
+      font-size: 1.2vw;
+  }
+
+  .search-profile-name .name-profile {
+      width: 100%;
+      justify-content: center;
+      gap: 10%;
+      /* margin-top: 10px; */
+  }
+
+  .search-profile-name .name-profile .icon {
+      font-size: 2.5vw;
+  }
+
+  .profile-dropdown {
+      width: 20%;
+      height: 18%;
+      /* border: 2px solid white; */
+  }
+
+  .profile-dropdown a {
+      font-size: 1.5vw;
+  }
+
+  .sidebar {
+      width: 20%;
+       /* border: 2px solid white; */
+  }
+
+  .sidebar .links a,
+  .sidebar .links .category {
+      font-size: 1.5vw;
+      /* border: 2px solid white; */
+      height: 8%;
+
+  }
+
+  .sidebar .links .categoryName {
+      font-size: 1.5vw;
+      /* border: 2px solid white; */
+      height: 7%;
+  }
+
+  .search-results {
+      /* width: 50%; */
+      left: 31.5%;
+      font-size: 1.5vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .logo-name {
+      width: 30%;
+  }
+
+  .logo-name .name {
+      font-size: 2vw;
+  }
+
+  .burger {
+      font-size: 3vw;
+  }
+
+  .search-profile-name input {
+      width: 90%;
+      font-size: 1.5vw;
+  }
+
+  .search-profile-name .name-profile .icon {
+      font-size: 3vw;
+  }
+
+  .profile-dropdown {
+      width: 30%;
+      height: 15%;
+  }
+
+  .profile-dropdown a {
+      font-size: 2vw;
+  }
+
+  .sidebar {
+      width: 25%;
+  }
+
+  .sidebar .links a,
+  .sidebar .links .category {
+      font-size: 2vw;
+      height: 6%;
+  }
+
+  .sidebar .links .categoryName {
+      font-size: 2vw;
+  }
+
+  .search-results {
+      width: 35%;
+      font-size: 2vw;
+  }
+}

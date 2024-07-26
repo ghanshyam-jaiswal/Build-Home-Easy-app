@@ -87,3 +87,99 @@
 .userProfile .details .info p{
     font-size: 1.2vw;
 }
+
+
+
+
+
+
+
+
+
+/* Media Queries */
+
+
+
+
+@media only screen and (max-width: 1024px) {
+    .userProfile .edit button {
+        font-size: 1vw;
+    }
+
+    .userProfile .profile img {
+        width: 15%;
+        height: 65%;
+    }
+
+    .userProfile .profile h1 {
+        font-size: 2vw;
+    }
+
+    .userProfile .details .info div {
+        font-size: 1.1vw;
+    }
+
+    .userProfile .details .info h3 {
+        font-size: 1.1vw;
+    }
+
+    .userProfile .details .info p {
+        font-size: 1.5vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .userProfile .edit button {
+        /* font-size: 1.2vw; */
+        height: 80%;
+    }
+
+    .userProfile .profile{
+        height: 20%;
+        /* border: 1px solid; */
+    }
+
+    .userProfile .profile img {
+        width: 15%;
+    }
+
+    .userProfile .details .info div {
+        font-size: 1.3vw;
+    }
+
+    .userProfile .details .info h3 {
+        font-size: 1.3vw;
+    }
+
+    .userProfile .details .info p {
+        font-size: 1.8vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .userProfile .edit button {
+        height: 60%;
+        width: 10%;
+    }
+
+    .userProfile .profile{
+        height: 15%;
+        /* border: 1px solid; */
+        justify-content: space-around;
+    }
+
+    .userProfile .profile img {
+        width: 18%;
+    }
+
+    .userProfile .details .info{
+        /* border: 1px solid; */
+        justify-content: space-evenly;
+    
+    }
+
+    .userProfile .details .info div {
+        font-size: 1.5vw;
+    }
+
+}

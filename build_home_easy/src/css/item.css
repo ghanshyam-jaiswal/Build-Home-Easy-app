@@ -169,3 +169,109 @@
   .item .childDetails .buy button:hover{
     background-color: rgb(223, 222, 221);
   }
+
+
+  /* Media Queries */
+
+
+@media only screen and (max-width: 1024px) {
+
+  .item .childDetails{
+    min-height: 20vh;
+    /* border: 1px solid brown; */
+  
+  }
+
+  .item .parentDetails img{
+    width: 20%;
+    height: 100%;
+    /* border: 1px solid brown; */
+    margin-left: 2%;
+  }
+
+  .item .parentDetails h2 {
+      font-size: 2vw;
+  }
+
+  .item .childDetails img {
+      width: 20%;
+      height: 65%;
+  }
+
+  .item .childDetails .info .name {
+      font-size: 1.4vw;
+  }
+
+  .item .childDetails .info .quantity p {
+      font-size: 1.2vw;
+  }
+
+  .item .childDetails .info .quantity div button {
+      font-size: 1.5vw;
+  }
+
+  .item .childDetails .buy button {
+      font-size: 1.1vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .item .parentDetails{
+    min-width: 95vw;
+    min-height: 15vh;
+    /* border: 1px solid brown; */
+  }
+
+  .item .childDetails{
+    min-width: 90vw;
+    min-height: 20vh;
+    /* border: 1px solid brown; */
+  }
+
+  .item .childDetails img {
+      width: 22%;
+      height: 60%;
+  }
+
+  .item .childDetails .info .name {
+      font-size: 1.8vw;
+  }
+
+  .item .childDetails .info .quantity p {
+      font-size: 1.5vw;
+  }
+
+  .item .childDetails .info .quantity div button {
+      font-size: 1.8vw;
+  }
+
+  .item .childDetails .buy button {
+      font-size: 1.4vw;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  .item .parentDetails img{
+    width: 30%;
+  }
+
+  .item .parentDetails h2 {
+      font-size: 3vw;
+  }
+
+  .item .childDetails{
+    min-height: 15vh;
+    /* border: 1px solid brown; */
+  }
+
+  .item .childDetails img {
+      width: 30%;
+      /* height: 55%; */
+  }
+  .item .childDetails .buy button {
+      /* border: 1px solid; */
+      width: 40%;
+  }
+}

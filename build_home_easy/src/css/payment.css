@@ -18,7 +18,8 @@
     /* padding: 1%; */
     /* background-color: black; */
     color: rgb(5, 5, 5);
-    box-shadow: 0px 0px 20px black;
+    box-shadow: 0px 0px 10px rgb(206, 189, 189);
+    border-radius: 7px;
 
 }
 .payment-body h1{
@@ -28,15 +29,18 @@
     justify-content: center;
     align-items: center;
     margin-top: 15%;
+    font-size: 1.8vw;
 
 }
 .payment-body button{
     margin-top: 20%;
-    margin-left: 10%;
-    width: 35%;
+    margin-left: 14%;
+    width: 30%;
     height: 18%;
-    border-radius: 5px;
+    border-radius: 7px;
     border: none;
+    font-size: 1vw;
+
 }
 .payment-body .btn-proceed{
     background-color: rgb(116, 172, 32);
@@ -50,3 +54,5 @@
 .payment-body .btn-cancel:hover{
     background-color: rgb(207, 60, 60);
 }
+
+

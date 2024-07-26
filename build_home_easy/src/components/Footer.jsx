@@ -60,13 +60,6 @@ const Footer = () => {
           <Link to={"/about"}>About</Link>
         </div>
       </div>
-      <div
-        className="footer-logo1"
-        style={{
-          backgroundImage:
-            'url("../Assests/energy-charger-logo-removebg-preview.png")',
-        }}
-      ></div>
     </div>
   );
 };
