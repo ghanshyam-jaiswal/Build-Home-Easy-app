@@ -131,21 +131,30 @@ const Payment = () => {
     }
 
   return (
+    // <div className='payment'>
+    //   <div className="payment-body">
+    //     {/* <h1>Quantity : {quantity}</h1> */}
+    //     <h1>Payment : {totalPrice}</h1>
+    //     {/* <button className='btn-proceed' onClick={()=>{addToCart(selectedCard);thankYou()}}>Proceed</button> */}
+    //     <button className='btn-proceed' onClick={()=>{handleProceedToPay()}}>Proceed</button>
+    //     <button className='btn-cancel' 
+    //       onClick={()=>{
+    //         navigate(`/item/${item.name}`,{state:{item}})
+    //         // console.log("itemName",item.name)
+    //       }
+    //       }
+    //     >Cancel</button>
+    //   </div>
+    // </div>
+
     <div className='payment'>
-      <div className="payment-body">
-        {/* <h1>Quantity : {quantity}</h1> */}
-        <h1>Payment : {totalPrice}</h1>
-        {/* <button className='btn-proceed' onClick={()=>{addToCart(selectedCard);thankYou()}}>Proceed</button> */}
-        <button className='btn-proceed' onClick={()=>{handleProceedToPay()}}>Proceed</button>
-        <button className='btn-cancel' 
-          onClick={()=>{
-            navigate(`/item/${item.name}`,{state:{item}})
-            // console.log("itemName",item.name)
-          }
-          }
-        >Cancel</button>
-      </div>
-    </div>
+            <div className="payment-body">
+                <h1>Payment: ₹{totalPrice}</h1>
+                <button className='btn-proceed' onClick={handleProceedToPay}>Proceed to Pay</button>
+                <button className='btn-cancel' onClick={() => navigate(`/item/${item.name}`, { state: { item } })}>Cancel</button>
+            </div>
+        </div>
+        
   )
 }
 

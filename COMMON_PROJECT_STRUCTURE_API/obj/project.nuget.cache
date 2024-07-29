@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CvyR14i5kDiPqnBmhV/b26YnXmC2jS3br/FzCPwxwNtRS1xlIq28JTRl4bvx7rAanN7ExJ5goF6AzGlHBD2LHQ==",
+  "dgSpecHash": "Z7AmD5WbLSIHaKu6wmqUWuK2ib+gE0kiscRm9qXOR/k6dxTYzZtFXB+mreKb4gHxRUF/HJcjgln2QRSv/A09gw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ghanshyam\\Project 2\\Build-Home-Easy-app\\COMMON_PROJECT_STRUCTURE_API\\COMMON_PROJECT_STRUCTURE_API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ghanshyam\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ghanshyam\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\ghanshyam\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\ghanshyam\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

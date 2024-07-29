@@ -343,3 +343,4 @@ C:\Users\ghanshyam\Project 2\Build-Home-Easy-app\COMMON_PROJECT_STRUCTURE_API\ob
 C:\Users\ghanshyam\Project 2\Build-Home-Easy-app\COMMON_PROJECT_STRUCTURE_API\obj\Debug\net6.0\COMMON_PROJECT_STRUCTURE_API.pdb
 C:\Users\ghanshyam\Project 2\Build-Home-Easy-app\COMMON_PROJECT_STRUCTURE_API\obj\Debug\net6.0\COMMON_PROJECT_STRUCTURE_API.genruntimeconfig.cache
 C:\Users\ghanshyam\Project 2\Build-Home-Easy-app\COMMON_PROJECT_STRUCTURE_API\obj\Debug\net6.0\ref\COMMON_PROJECT_STRUCTURE_API.dll
+C:\Users\ghanshyam\Project 2\Build-Home-Easy-app\COMMON_PROJECT_STRUCTURE_API\bin\Debug\net6.0\BCrypt.Net-Next.dll

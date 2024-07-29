@@ -1,4 +1,6 @@
 using MySql.Data.MySqlClient;
+using BCrypt.Net;
+using COMMON_PROJECT_STRUCTURE_API.services;
 
 
 

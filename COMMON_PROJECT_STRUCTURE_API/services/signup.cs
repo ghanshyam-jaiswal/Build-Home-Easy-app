@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System;
+using BCrypt.Net;
+
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -28,6 +30,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
+                    // string hashedPassword = PasswordUtils.HashPassword(rData.addInfo["password"].ToString());
+
                    var sq = @"INSERT INTO pc_student.BuildHomeEasyUser (first_name, last_name, gender, email, password, contact, street_address1, street_address2, city, state, pincode, country, profile) 
                                VALUES (@FIRST_NAME, @LAST_NAME, @gender, @EMAIL, @PASSWORD, @CONTACT, @STREET_ADDRESS1, @STREET_ADDRESS2, @CITY, @STATE, @PINCODE, @COUNTRY,@PROFILE)";
                   MySqlParameter[] insertParams = new MySqlParameter[]
@@ -37,6 +41,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         new MySqlParameter("@gender", rData.addInfo["gender"]),
                         new MySqlParameter("@EMAIL", rData.addInfo["email"]),
                         new MySqlParameter("@PASSWORD", rData.addInfo["password"]),
+                        // new MySqlParameter("@PASSWORD", hashedPassword),
                         new MySqlParameter("@CONTACT", rData.addInfo["contact"]),
                         new MySqlParameter("@STREET_ADDRESS1", rData.addInfo["street_address1"]),
                         new MySqlParameter("@STREET_ADDRESS2", rData.addInfo["street_address2"]),
@@ -78,6 +83,9 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
+                    // string password = rData.addInfo["password"].ToString();
+                    // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
                    var sq = @"INSERT INTO pc_student.RepairStoreAdmin (firstName, lastName, email, password) 
                                VALUES (@firstName, @lastName, @email, @password)";
                     MySqlParameter[] insertParams = new MySqlParameter[]
@@ -86,6 +94,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         new MySqlParameter("@lastName", rData.addInfo["lastName"]),
                         new MySqlParameter("@email", rData.addInfo["email"]),
                         new MySqlParameter("@password", rData.addInfo["password"]),
+                        // new MySqlParameter("@PASSWORD", hashedPassword),
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 

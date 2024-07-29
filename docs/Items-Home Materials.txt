@@ -1,0 +1,41 @@
+ITEMS : 
+
+brick : common burnt clay bricks, Sand-lime brick, Engineering bricks, Concrete brick, Fly ash bricks, 
+steel(char): Rebar Steel, Structural Steel, Mild Steel, Alloy Steel, Light Gauge Steel,
+cement : Ordinary Portland cement, Portland Pozzolana cement, Rapid hardening cement, High alumina cement, White 	 Cement,
+tiles: Marble, Cement tiles, Limestone tiles, Glass tile, Wooden tiles, Granite tiles
+pipes : Drainage pipes, fitting pipe , Drainage fitting pipes, Concrete pipes, PEX pipes, Galvanized pipe, 
+pent : Enamel paint , Emulsion paint, Oil Based paint ,Cement paint,
+putti : White cement wall putty, wall putty, Diamond wall putty, Birla Putty, Wood putty 
+Bulb :CFL, Fluorescent, ceiling led fluorescent, Incandescent light bulbs , Paddle bulb, 
+			Tube Light.
+connection holder or wire, cable : Crystal Angle Batten Bulb Holder , Anchor Lighting Chain Angle Holder,
+				  Angle Holder (Square), Pendant Holders, holders with pin. Coaxial cable, 					 Underground Feeder cable, Shielded cables, wires, metal wire cable.
+// switch board - wire tap :
+sand : concrete sand, river sand or pit sand, M-sand (Manufactured Sand), Utility Sand, Fill Sand.
+concrete or aggregate : Sand Recycled Aggregates, Concrete Recycled Aggregates, Landscaping Stones, Gravel Crushed stone, 60mm Stone Chips, 
+binding wire : Annealed steel tying wire, Electro galvanized binding wire, Hot-dip galvanized tie wire, PVC or PE 		coated binding wire.
+Shuttering plywood or plaster board : Red Shuttering Plywood, 12 Mm Shuttering Plywood For Furniture 6x3,
+				Film Faced Plywood Board, Multicolor Shuttering Plywood Sheet,  
+doors : Pocket door, Flush doors, Steel doors, Wood-plastic composite door,
+windows : Sliding Windows, Pivot Windows, Single-Hung Windows, Louvred Windows, Casement Windows 
+spade : Stainless Steel Spade, Mild Steel Spade/ Fawda with wooden handle, RUGDOLL Garden Spade, trade spade, shovels 	spades
+construction taps : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

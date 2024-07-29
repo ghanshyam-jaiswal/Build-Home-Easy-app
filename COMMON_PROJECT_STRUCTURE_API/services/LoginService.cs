@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Data;
+using BCrypt.Net;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -17,13 +19,13 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             try
             {
                 var query = @"SELECT * FROM pc_student.BuildHomeEasyUser WHERE email=@Email AND password=@Password";
+                // var query = @"SELECT * FROM pc_student.BuildHomeEasyUser WHERE email=@Email";
                 MySqlParameter[] parameters = new MySqlParameter[]
                 {
                     new MySqlParameter("@Email", email),
                     new MySqlParameter("@Password", password)
                 };
 
-                // var result = await _dbServices.executeSQL(query, parameters);
                 var insertResult = _dbServices.executeSQL(query, parameters);
                 
                 if (insertResult[0].Count > 0)
