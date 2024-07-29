@@ -200,3 +200,80 @@
     /* color: rgb(223, 216, 216); */
   }
 
+
+
+
+
+  /* Media Queries */
+
+@media only screen and (max-width: 1024px) {
+  .cart th, .cart td {
+      font-size: 1.5vw;
+  }
+
+  .cart .editQuantity {
+      /* width: 20vw; */
+      height: 4vh;
+  }
+
+  .cart .action button {
+      font-size: 0.9vw;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  .cart .editQuantity {
+      /* width: 30vw; */
+      height: 3vh;
+  }
+
+  .cart .action{
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .cart .action button{
+    width: 50%;
+    height: 3.5em;
+    font-size: 0.65vw;
+    border-radius: 4px;
+  }
+
+
+}
+
+@media only screen and (max-width: 480px) {
+  .cart {
+      height: auto;
+      padding-top: 10px;
+  }
+
+  .cart .tableContainer {
+    width: 100%;
+    border-radius: 1px;
+  }
+
+  .cart th, .cart td {
+      font-size: 3vw;
+  }
+
+  .cart .editQuantity {
+      font-size: 2vw;
+  }
+
+  .cart .action button {
+      font-size: 2vw;
+      height: 35%;
+  }
+
+  .cart .profile {
+      width: 15em;
+      height: 12em;
+  }
+
+
+}

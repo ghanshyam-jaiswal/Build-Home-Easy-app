@@ -198,6 +198,21 @@
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
+    /* border: 1px solid; */
+    height: auto;
+}
+
+.profile-dropdown.open .active{
+  /* border: 1px solid white; */
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
+}
+.profile-dropdown.open .active:hover{
+  background-color: rgb(100, 89, 89);
 }
 
 .myOrder{

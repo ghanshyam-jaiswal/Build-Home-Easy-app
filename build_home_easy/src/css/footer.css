@@ -60,6 +60,11 @@
 }
    
 
+
+/* media Query */
+
+
+
 @media only screen and (max-width: 1024px) {
     .footer {
         /* flex-direction: column; */

@@ -175,8 +175,9 @@ const Nav = ({list,addedCart,userDetails}) => {
                 </div>
 
                 <div className={`profile-dropdown ${isProfileOpen ? 'open' : ''}`}>
-                    <NavLink to='/adminProfile' className={(e)=>{return e.isActive?"active":" "}} >Profile</NavLink>
-                    <div 
+                    {/* <NavLink to='/adminProfile' className={(e)=>{return e.isActive?"active":" "}} >Profile</NavLink> */}
+                    <div onClick={()=>navigate('/adminProfile')} className='active' >Profile</div>
+                    <div  className='active'
                         // style={{width:'100%',height:'20%',display:'flex',justifyContent:'center',alignItems:'center'}}
                         onClick={()=>{
                             if(window.confirm('Are you sure')){

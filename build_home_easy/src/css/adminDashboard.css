@@ -98,3 +98,110 @@
     background-color: rgb(218, 215, 212);
 }
 
+
+
+
+/* Media Queries */
+
+
+@media only screen and (max-width: 1024px) {
+    .adminDashboard .title {
+        font-size: 2vw;
+    }
+
+    .adminDashboard .section2 div p {
+        font-size: 2.5vw;
+    }
+
+    .adminDashboard .section2 div .income {
+        font-size: 2vw;
+    }
+
+    .adminDashboard .section2 div button {
+        font-size: 1vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .adminDashboard{
+        height: auto;
+        gap: 5%;
+        overflow-y: auto;
+        padding-top: 8%;
+    }
+
+    .adminDashboard .title {
+        text-align: center;
+    }
+
+    .adminDashboard .section1 {
+        height: 15vh;
+        margin-top: 5%;
+       
+    }
+
+    .adminDashboard .section2 {
+        flex-direction: column;
+        height: auto;
+        /* border: 1px solid; */
+        padding-bottom: 5%;
+    }
+
+    .adminDashboard .section2 div {
+        width: 80%;
+        height: 22vh;
+        margin-top: 5%;
+        padding: 2%;
+    }
+
+    .adminDashboard .section2 div p {
+        width: 15%;
+        height: 45%;
+    }
+
+    .adminDashboard .section2 div .income {
+        width: 20%;
+        height: 62%;
+    }
+
+    .adminDashboard .section2 div button {
+        font-size: 1.2vw;
+        width: 12%;
+        height: 17%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .adminDashboard .title {
+        /* font-size: 3vw; */
+    }
+
+    .adminDashboard .section1 {
+        /* height: auto; */
+        height: 12vh;
+    }
+
+    .adminDashboard .section2 {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 5%;
+        /* border: 1px solid; */
+    }
+
+    .adminDashboard .section2 div {
+        width: 90%;
+        height: 15vh;
+    }
+
+    .adminDashboard .section2 div p {
+        font-size: 4vw;
+    }
+
+    .adminDashboard .section2 div .income {
+        font-size: 3vw;
+    }
+
+    .adminDashboard .section2 div button {
+        font-size: 1.5vw;
+    }
+}

@@ -155,3 +155,75 @@
     background-color: rgb(233, 229, 221);
     border: 2px solid rgb(199, 171, 171);
 }
+
+
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 1024px) {
+    .signup form {
+        width: 60%;
+        font-size: 1vw;
+    }
+
+    .signup form .signup-div input {
+        font-size: 1vw;
+    }
+
+    .signup-fullname input,
+    .signup-email input,
+    .signup-contact input {
+        font-size: 1vw;
+    }
+
+    .signup-submit button {
+        font-size: 1vw;
+    }
+
+    .signup form .signup-div .gender select {
+        font-size: 1vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .signup form {
+        width: 80%;
+        font-size: 1.5vw;
+    }
+
+    .signup form .signup-div input {
+        font-size: 1.5vw;
+    }
+
+    .signup-fullname input,
+    .signup-email input,
+    .signup-contact input {
+        font-size: 1.5vw;
+    }
+
+    .signup-submit button {
+        font-size: 1.5vw;
+    }
+
+    .signup form .signup-div .gender select {
+        font-size: 1.5vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .signup form {
+        width: 90%;
+        width: 100%;
+        border: none;
+        box-shadow: 0px 0px 0px;
+    }
+    .signup-email .icon{
+        width: 9%;
+        height: 12%;
+    }
+    .signup-submit button {
+        height: 70%;
+    }
+
+}
