@@ -5,6 +5,15 @@
     justify-content: center;
     align-items: center;
     background-color: #f5f5f5;
+    /* border: 3px solid yellow; */
+    background-image: linear-gradient(rgba(105, 94, 94, 0.5), rgba(75, 67, 67, 0.5)), url(/assests/login-bg-img.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    /* opacity: ; */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+    background-blend-mode: luminosity; /* Or use darken, overlay, etc., depending on your preference */
+  
   }
   
   .login {
@@ -15,7 +24,7 @@
     /* height: 90vh; */
     max-width: 400px;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
   }

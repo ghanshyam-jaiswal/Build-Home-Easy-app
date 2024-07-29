@@ -175,8 +175,8 @@ const Nav = ({list,addedCart,userDetails}) => {
                 </div>
 
                 <div className={`profile-dropdown ${isProfileOpen ? 'open' : ''}`}>
-                    {/* <NavLink to='/adminProfile' className={(e)=>{return e.isActive?"active":" "}} >Profile</NavLink> */}
-                    <div onClick={()=>navigate('/adminProfile')} className='active' >Profile</div>
+                    <NavLink to='/adminProfile' className={(e)=>{return e.isActive?"active":" "}} >Profile</NavLink>
+                    {/* <div onClick={()=>navigate('/adminProfile')} className='active' >Profile</div> */}
                     <div  className='active'
                         // style={{width:'100%',height:'20%',display:'flex',justifyContent:'center',alignItems:'center'}}
                         onClick={()=>{
@@ -295,7 +295,7 @@ const Nav = ({list,addedCart,userDetails}) => {
                         {
                             checkUserLogin ?
                             <>
-                                <NavLink 
+                                <div className='active'
                                     onClick={()=>{
                                         if(window.confirm('Are you sure')){
                                             localStorage.removeItem('user');
@@ -303,7 +303,8 @@ const Nav = ({list,addedCart,userDetails}) => {
                                             to=('/login')
                                         }
                                     }}
-                                >Logout</NavLink>
+                                >Logout
+                                </div>
                             </>
                             :
                             <NavLink to='/login'>Login</NavLink>

@@ -202,19 +202,6 @@
     height: auto;
 }
 
-.profile-dropdown.open .active{
-  /* border: 1px solid white; */
-  width: 100%;
-  height: 7vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1vw;
-}
-.profile-dropdown.open .active:hover{
-  background-color: rgb(100, 89, 89);
-}
-
 .myOrder{
   width: 11%;
   height: 43%;
@@ -230,7 +217,8 @@
 .profile-dropdown a {
     /* border: 1px solid; */
     width: 100%;
-    height: 25%;
+    /* height: 25%; */
+    height: 7vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -247,6 +235,19 @@
 .profile-dropdown a:hover {
     /* text-decoration: underline; */
     background-color: rgb(100, 89, 89);
+}
+
+.profile-dropdown .active{
+  /* border: 1px solid white; */
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9vw;
+}
+.profile-dropdown .active:hover{
+  background-color: rgb(100, 89, 89);
 }
 
 

@@ -1,10 +1,14 @@
 .signup{
     width: 100vw;
     height: 90vh;
-    /* border: 1px solid; */
+    /* border: 5px solid yellow;  */
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(rgba(105, 94, 94, 0.5), rgba(75, 67, 67, 0.5)), url(/assests/login-bg-img.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
     /* background-image: url(../Assests/signup-img.jpg);
     background-size: cover;
     background-position: center; */
@@ -21,9 +25,9 @@
     align-items: center;
     flex-wrap: wrap;
     padding:1%;
-    box-shadow: 0px 0px 3px black;
+    box-shadow: 0px 0px 10px rgb(131, 121, 121);
     border-radius: 15px;
-    /* background-color: black; */
+    background-color: rgb(255, 255, 255);
     font-size: 0.8vw;
 }
 
@@ -122,11 +126,11 @@
     border-radius: 7px;
     border: none;
     color: white;
-    background-color: rgb(81, 81, 222);
+    background-color: rgb(24, 153, 212);
     font-size: 0.7vw;
 }
 .signup-submit button:hover{
-    background-color: rgb(10, 10, 218);
+    background-color: rgb(18, 135, 189);
 }
 
 .signup form .signup-div .gender {
