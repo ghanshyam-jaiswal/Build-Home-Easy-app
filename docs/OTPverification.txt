@@ -1,0 +1,582 @@
+import React, { useState } from 'react';
+import './login.scss';
+import axios from 'axios';
+import {Link, useNavigate } from 'react-router-dom';
+
+
+const VerifyEmail = () => {
+ 
+  const [email, setEmail] = useState('');
+    //for the restriction - we cant go to another page using back button of the website
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
+    }; 
+  
+  // const navigate = useNavigate();
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    console.log('Email submitted:', email);
+
+   
+  
+
+  const payload = {
+     eventID:"1001",
+     addInfo:{
+       email:email
+     }
+  };
+
+  try {
+    const response = await axios.post('http://localhost:5164/generate', payload);
+    const res = response.data.result.rData.rMessage;
+
+    if (res === 'OTP sent successfully') {
+      alert(res);
+      // navigate('/forgotpassword');
+    } else {
+      alert(res || 'Failed to send OTP');
+    }
+  } catch (error) {
+    console.error('Error sending OTP:', error);
+    alert('Error sending OTP. Please try again.');
+  }
+  }
+  return (
+    <div className="login-page">
+      <div className="left-section">
+        <div className="logo">EMAIL VERIFICATION</div>
+        <img src="./images/loginPhoto.png" alt="login" className="loginimage" />
+      </div>
+      <div className="right-section">
+        <div className="login-container">
+          <h2>Enter Your Email ID</h2>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <label>
+              Email Address*
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+            </label>
+            <button type="submit" className="login-button">Send</button>
+            <Link to="/otpverify">
+            <button type="submit" className="button2">Verify</button>
+            </Link>
+          </form>
+        </div>
+     </div>
+     </div>
+
+  )
+}
+
+export default VerifyEmail
+
+end---------------------------------------
+
+
+
+import React, { useState } from 'react';
+import './login.scss';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const OTPverify = () => {
+  const [otp, setOtp] = useState('');
+
+    //for the restriction - we cant go to another page using back button of the website
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
+    }; 
+  
+    const navigate = useNavigate();
+  // const [message, setMessage] = useState('');
+
+  const handleOtpChange = (e) => {
+    setOtp(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
+    const payload = {
+      eventID:"1001",
+      addInfo:{
+        otp:otp
+      }
+   };
+
+
+    try {
+      const response = await axios.post('http://localhost:5164/verify',payload);
+      const res = response.data.result.rData.message;
+
+      if(res === 'OTP verified SuccessFully'){
+         alert(res);
+         navigate('generatepass');
+      }
+      else{
+        alert(res || 'Invalid OTP');
+      }
+    } catch (error){ 
+      console.error('Error verification OTP:',error);
+      alert('Error invalid OTP Please try again..')
+    }
+  }
+  return (
+    <div className="login-page">
+      <div className="left-section">
+        <div className="logo">OTP VERIFICATION</div>
+        <img src="./images/loginPhoto.png" alt="login" className="loginimage" />
+      </div>
+      <div className="right-section">
+        <div className="login-container">
+          <h2>Enter OTP Number</h2>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <label>
+              OTP*
+              <input
+                type="number"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={handleOtpChange}
+                required
+              />
+            </label>
+            <button type="submit" className="login-button">Submit</button>
+            <Link to="/generatepass">
+              <button type="button" className="button2">Generate</button>
+            </Link>
+          </form>
+         
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default OTPverify;
+
+
+end------------------------------------------------------------------------
+
+
+
+
+
+import React, { useState } from 'react';
+import './login.scss';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const GeneratePass = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+    //for the restriction - we cant go to another page using back button of the website
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.go(1);
+    }; 
+  
+
+  const handlePasswordUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      if (newPassword !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+      }
+  
+      const updatePayload = {
+        eventID: "1001",
+        addInfo: {
+          email: email,
+          password: newPassword
+        }
+      };  
+  
+      console.log('Update Payload:', updatePayload);
+  
+      const response = await axios.post('http://localhost:5164/updatepasswordarmy', updatePayload);
+      const { data } = response;
+  
+      console.log('Update Response:', data);
+  
+      if (data) {
+        alert('Password Updated Successfully');
+          navigate('/soldier'); 
+        } else {
+          alert(data.resData.rData.message); 
+        }
+   
+    } catch (error) {
+      console.error('Error updating password:', error);
+      alert('Error updating password. Please try again.');
+    }
+  };
+  
+
+  return (
+    <div className="login-page">
+      <div className="left-section">
+        <div className="logo">NEW PASSWORD</div>
+        <img src="./images/loginPhoto.png" alt="login" className="loginimage" />
+      </div>
+      <div className="right-section">
+        <div className="login-container">
+          <h2>Enter New Password</h2>
+          <form className="login-form" onSubmit={handlePasswordUpdate}>
+            <label>
+              Enter Email*
+              <input
+                type="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </label>
+
+            <label>
+              New Password*
+              <input
+                type="password"
+                placeholder="Enter new password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
+            </label>
+            <label>
+              Confirm Password*
+              <input
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </label>
+            <button type="submit" className="login-button">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default GeneratePass;
+
+
+
+
+end---------------------------------------------------------------------------------
+
+
+
+
+
+
+backend=============================================
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using System.Text.Json;
+using System.Net;
+using System.Net.Mail;
+
+namespace COMMON_PROJECT_STRUCTURE_API.services
+{
+   public class verify
+{
+    public  dbServices ds = new dbServices();
+    public async Task<responseData> VerifyOTP(requestData rData)
+		{
+			responseData resData = new responseData();
+
+			string connectionString = "server=210.210.210.50;user=test_user;password=test*123;port=2020;database=pc_student;";
+
+			try
+			{
+				
+				string otp = rData.addInfo["otp"].ToString();
+
+				// Validate OTP
+				var validateOTPQuery = @"SELECT COUNT(*) FROM pc_student.OTP_generate WHERE otp=@otp";
+				using (var connection = new MySqlConnection(connectionString))
+				{
+					await connection.OpenAsync();
+
+					using (var cmd = new MySqlCommand(validateOTPQuery, connection))
+					{
+						
+						cmd.Parameters.AddWithValue("@otp", otp);
+
+						object countObj = await cmd.ExecuteScalarAsync();
+
+						if (countObj != null && countObj != DBNull.Value)
+						{
+							if (int.TryParse(countObj.ToString(), out int count) && count > 0)
+							{
+								// Delete used OTP from OTP4_USER table
+								var deleteOTPQuery = @"DELETE FROM pc_student.OTP_generate WHERE otp=@otp";
+								using (var deleteCmd = new MySqlCommand(deleteOTPQuery, connection))
+								{
+									
+									deleteCmd.Parameters.AddWithValue("@otp", otp);
+									await deleteCmd.ExecuteNonQueryAsync();
+								}
+
+								resData.rData["success"] = true;
+								resData.rData["message"] = "OTP verified successfully.";
+							}
+							else
+							{
+								resData.rData["message"] = "Invalid OTP.";
+							}
+						}
+						else
+						{
+							resData.rData["message"] = "Invalid OTP.";
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				resData.rData["message"] = "Exception occurred: " + ex.Message;
+				Console.WriteLine("Exception in VerifyOTP: " + ex.Message);
+			}
+
+			return resData;
+		}
+
+    }
+}
+
+
+
+end====================================================
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using System.Text.Json;
+using System.Net;
+using System.Net.Mail;
+
+namespace COMMON_PROJECT_STRUCTURE_API.services
+{
+   public class updatepasswordarmy
+{
+    public  dbServices ds = new dbServices();
+
+   public async Task<responseData> Updatepasswordarmy(requestData rData)
+		{
+			responseData resData = new responseData();
+
+            string connectionString = "server=210.210.210.50;user=test_user;password=test*123;port=2020;database=pc_student;";
+
+            try
+            {
+                string email = rData.addInfo["email"].ToString();
+                string newPassword = rData.addInfo["password"].ToString();
+
+                // Update password in the database
+                var updatePasswordQuery = @"UPDATE pc_student.Army_soldiers SET password = @password WHERE email = @email";
+
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    using (var cmd = new MySqlCommand(updatePasswordQuery, connection))
+                    {
+                        // Implement your password hashing logic here if necessary
+                        cmd.Parameters.AddWithValue("@password", HashPassword(newPassword));
+                        cmd.Parameters.AddWithValue("@email", email);
+
+                        int rowsAffected = await cmd.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            resData.rData["success"] = true;
+                            resData.rData["message"] = "Password updated successfully.";
+                        }
+                        else
+                        {
+                            resData.rData["message"] = "Failed to update password.";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                resData.rData["message"] = "Exception occurred: " + ex.Message;
+                Console.WriteLine("Exception in UpdatePassword: " + ex.Message);
+            }
+
+            return resData;
+        }
+
+    
+        private string HashPassword(string password)
+        {
+            
+            return password; 
+        }
+    }
+}
+
+
+end==============================
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using System.Text.Json;
+using System.Net;
+using System.Net.Mail;
+
+namespace COMMON_PROJECT_STRUCTURE_API.services
+{
+   public class generate
+{
+
+    public  dbServices ds = new dbServices();
+    
+   public async Task<responseData> Generate(requestData rData)
+		{
+			responseData resData = new responseData();
+
+			string connectionString = "server=210.210.210.50;user=test_user;password=test*123;port=2020;database=pc_student;";
+			string gmailUsername = "rahulkumarnishad810@gmail.com"; // My Gmail address
+			string gmailPassword = "vyow ekml apot syum"; // My Gmail password
+
+			try
+			{
+				string email = rData.addInfo["email"].ToString();
+
+				// Check if the email exists in the database
+				var checkEmailQuery = @"SELECT COUNT(*) FROM pc_student.Army_soldiers WHERE email=@email";
+				using (var connection = new MySqlConnection(connectionString))
+				{
+					await connection.OpenAsync();
+
+					using (var cmd = new MySqlCommand(checkEmailQuery, connection))
+					{
+						cmd.Parameters.AddWithValue("@email", email);
+
+						// Execute the query and read the resultS
+						object countObj = await cmd.ExecuteScalarAsync();
+
+						if (countObj != null && countObj != DBNull.Value)
+						{
+							if (int.TryParse(countObj.ToString(), out int count))
+							{
+								if (count > 0)
+								{
+									// Generate OTP
+									string otp = Generate();
+
+									// // Save OTP to the database
+									var insertQuery = @"INSERT INTO pc_student.OTP_generate (otp) VALUES (@otp)";
+									using (var insertCmd = new MySqlCommand(insertQuery, connection))
+									{
+										
+										insertCmd.Parameters.AddWithValue("@otp", otp);
+										await insertCmd.ExecuteNonQueryAsync();
+									}
+
+									// Send OTP via email using Gmail SMTP
+									using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
+									{
+										client.UseDefaultCredentials = false;
+										client.Credentials = new NetworkCredential(gmailUsername, gmailPassword);
+										client.EnableSsl = true;
+
+										MailMessage mailMessage = new MailMessage();
+										mailMessage.From = new MailAddress(gmailUsername);
+										mailMessage.To.Add(email);
+										mailMessage.Subject = "OTP Verification";
+										mailMessage.Body = "Your OTP is: " + otp;
+
+										await client.SendMailAsync(mailMessage);
+									}
+
+
+									// resData.rData["rMessage"] = "OTP generated successfully and sent to " + email + " - otp - " + otp;
+									resData.rData["rMessage"] = "Your OTP is:- " + otp;
+								}
+								else
+								{
+									resData.rData["rMessage"] = "Email not found in our records.";
+								}
+							}
+							else
+							{
+								resData.rData["rMessage"] = "Unable to convert count to integer.";
+							}
+						}
+						else
+						{
+							resData.rData["rMessage"] = "Count value is null or empty.";
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				resData.rData["rMessage"] = "Exception occurred: " + ex.Message + " --- " + ex;
+				// Log exception here for troubleshooting
+				Console.WriteLine("Exception in GenerateOtp: " + ex.Message);
+			}
+
+			return resData;
+		}
+		private string Generate()
+		{
+			Random random = new Random();
+			return random.Next(100000, 999999).ToString(); // Generate 6-digit OTP
+		}
+
+    }
+}
+
+en================================
+
+
+
+
+

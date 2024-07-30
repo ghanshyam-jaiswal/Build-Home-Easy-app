@@ -257,7 +257,15 @@ const Nav = ({list,addedCart,userDetails}) => {
                          
                             {/* <h3>Name</h3> */}
                             {/* <img src="xxx" alt="Profile" /> */}
-                            <CgProfile className="icon" onClick={toggleProfile} />
+                                                                                                                        {/* user Profile */}
+                            {
+                                userDetails.profile ? 
+                                <img src={userDetails.profile} alt="" onClick={toggleProfile} className="icon-img" />
+                                // style={{width:'2.4vw',height:'4.5vh',borderRadius:'100%',cursor:'pointer'}}
+                                :
+                                <CgProfile className="icon" onClick={toggleProfile} />
+                            }
+                           
                         </div>
                     </div>
                 </div>

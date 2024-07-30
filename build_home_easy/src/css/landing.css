@@ -1,5 +1,5 @@
 .landing{
-    width: 100vw;
+    /* width: 99vw; */
     height: auto;
     /* height: 90vh; */
     /* border: 2px solid blue; */
@@ -118,6 +118,8 @@
 
 
 /* Media Queries */
+
+
 @media only screen and (max-width: 1024px) {
     .landing-hero {
         height: 30vh;

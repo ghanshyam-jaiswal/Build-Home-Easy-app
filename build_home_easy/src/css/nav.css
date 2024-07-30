@@ -1,6 +1,7 @@
+
 .nav{
     /* border: 1px solid; */
-    width: 100vw;
+    /* width: 99vw; */
     height: 10vh;
     display: flex;
     justify-content: space-evenly;
@@ -83,6 +84,17 @@
     /* border: 1px solid; */
 
 }
+.search-profile-name .name-profile .icon-img{
+    width: 2.2vw;
+    height: 4.5vh;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+
+
+
+
 /* Sidebar styling */
 .sidebar {
     position: fixed;
@@ -365,6 +377,11 @@
       font-size: 2vw;
   }
 
+  .search-profile-name .name-profile .icon-img{
+    width: 3.4vw;
+    height: 4vh;
+  }
+
   .profile-dropdown a {
       font-size: 1vw;
   }
@@ -430,6 +447,11 @@
       font-size: 2.5vw;
   }
 
+  .search-profile-name .name-profile .icon-img{
+    width: 3.5vw;
+    height: 3.3vh;
+  }
+
   .profile-dropdown {
       width: 20%;
       height: 18%;
@@ -486,6 +508,11 @@
 
   .search-profile-name .name-profile .icon {
       font-size: 3vw;
+  }
+
+  .search-profile-name .name-profile .icon-img{
+    width: 3.8vw;
+    height: 2.3vh;
   }
 
   .profile-dropdown {

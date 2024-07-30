@@ -29,6 +29,9 @@ import UserProfileEdit from './components/UserProfileEdit'
 import AdminDashboard from './components/AdminDashboard'
 import AdminProfile from './components/AdminProfile'
 import About from './components/About'
+import VerifyEmail from './components/VerifyEmail'
+import OTPverify from './components/OTPverify'
+import GeneratePassword from './components/GeneratePassword'
 
 const App = () => {
 
@@ -140,6 +143,10 @@ const App = () => {
                 <Route path='/profile' element={<UserProfile userDetails={userDetails} />}></Route>
                 <Route path='/profileEdit' element={<UserProfileEdit />}></Route>
                 <Route path='/about' element={<About />}></Route>
+                {/* <Route path='/forgetPassword' element={<ForgetPassword />}></Route> */}
+                <Route path='/verifyEmail' element={<VerifyEmail />}></Route>
+                <Route path='/otpVerify' element={<OTPverify />}></Route>
+                <Route path='/generatePassword' element={<GeneratePassword />}></Route>
 
                 {/* <Route path="/admin" element={<Admin/>} > */}
                     {/* <Route index element={<Navigate to="/admin/users" />} /> */}

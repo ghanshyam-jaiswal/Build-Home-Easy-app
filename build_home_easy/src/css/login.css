@@ -64,6 +64,18 @@
     font-size: 1em;
   }
   
+  .forgot-password-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .forgot-password-btn:hover {
+    text-decoration: underline;
+  }
+  
   .submit-btn {
     width: 100%;
     padding: 10px;
@@ -79,6 +91,56 @@
   
   .submit-btn:hover {
     background-color: #367fcc;
+  }
+
+
+
+
+
+
+
+  
+  
+  /* media query */
+
+
+
+  @media (max-width: 1024px) {
+    .login {
+      width: 80%;
+      padding: 20px;
+    }
+  
+    .login h1 {
+      font-size: 1.8em;
+    }
+  
+    .icon-text input {
+      font-size: 1em;
+    }
+  
+    .submit-btn {
+      font-size: 1em;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .login {
+      width: 70%;
+      padding: 20px;
+    }
+  
+    .login h1 {
+      font-size: 1.6em;
+    }
+  
+    .icon-text input {
+      font-size: 0.95em;
+    }
+  
+    .submit-btn {
+      font-size: 0.95em;
+    }
   }
   
   @media (max-width: 480px) {
@@ -99,23 +161,3 @@
       font-size: 0.9em;
     }
   }
-  
-  @media (max-width: 768px) {
-    .login {
-      width: 80%;
-      padding: 20px;
-    }
-  
-    .login h1 {
-      font-size: 1.8em;
-    }
-  
-    .icon-text input {
-      font-size: 1em;
-    }
-  
-    .submit-btn {
-      font-size: 1em;
-    }
-  }
-  

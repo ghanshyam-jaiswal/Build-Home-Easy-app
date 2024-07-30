@@ -25,6 +25,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
         s.AddSingleton<product>();
         s.AddSingleton<addToCart>();
         s.AddSingleton<countData>();
+        s.AddSingleton<ForgetPassword>();
         s.AddSingleton<dbServices>();
 
 
@@ -74,6 +75,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
             var addToCart = e.ServiceProvider.GetRequiredService<addToCart>();
             var admin = e.ServiceProvider.GetRequiredService<admin>();
             var countData = e.ServiceProvider.GetRequiredService<countData>();
+            var forgetPassword = e.ServiceProvider.GetRequiredService<ForgetPassword>();
 
             e.MapPost("login",
             [AllowAnonymous] async (HttpContext http) =>
@@ -148,6 +150,7 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(result);
                 }
             });
+
             e.MapPost("homeAdminLogin",
             [AllowAnonymous] async (HttpContext http) =>
             {
@@ -162,6 +165,37 @@ var builder = WebHost.CreateDefaultBuilder(args)
                     await http.Response.WriteAsJsonAsync(result);
                 }
             });
+
+            e.MapPost("homeForgetPasswordGenerate",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received forgetPassword request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await forgetPassword.Generate(rData));
+            });
+            
+            e.MapPost("homeForgetPasswordVerifyOTP",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received forgetPassword request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await forgetPassword.VerifyOTP(rData));
+            });
+            
+            e.MapPost("homeForgetPasswordUpdatepassword",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                Console.WriteLine($"Received forgetPassword request: {JsonSerializer.Serialize(rData)}");
+                if (rData.eventID == "1001") // signup
+                    await http.Response.WriteAsJsonAsync(await forgetPassword.Updatepassword(rData));
+            });
+            
 
             e.MapPost("homeGetUserByEmail",
             [AllowAnonymous] async (HttpContext http) =>
@@ -187,6 +221,20 @@ var builder = WebHost.CreateDefaultBuilder(args)
                 {
                     var email = rData.addInfo["email"].ToString();
                     var result = await admin.GetAdminByEmail(rData);
+                    await http.Response.WriteAsJsonAsync(result);
+                }
+            });
+
+            e.MapPost("homeUpdateAdminByEmail",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+
+                if (rData.eventID == "1001") // getUserByEmail
+                {
+                    var email = rData.addInfo["email"].ToString();
+                    var result = await admin.UpdateAdminByEmail(rData);
                     await http.Response.WriteAsJsonAsync(result);
                 }
             });

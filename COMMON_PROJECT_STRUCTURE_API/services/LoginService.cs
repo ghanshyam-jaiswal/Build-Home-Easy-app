@@ -2,6 +2,9 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
 using BCrypt.Net;
+using System;
+using System.Net;
+using System.Net.Mail;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -72,5 +75,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 return "An error occurred: " + ex.Message;
             }
         }
+
+
     }
 }
