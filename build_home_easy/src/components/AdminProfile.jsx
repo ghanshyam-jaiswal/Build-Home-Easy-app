@@ -96,7 +96,7 @@ const AdminProfile = () => {
       <div className="profile-card">
         <h1 className="profile-title">Admin Profile</h1>
         <div className="profile-info">
-          <img src={profileDetails.profile} alt="Profile" className="profile-image" />
+          {/* <img src={profileDetails.profile} alt="Profile" className="profile-image" /> */}
           {/* <img src='' alt="Profile" className="profile-image" /> */}
           <div className="profile-details">
             {isEditing ? (
