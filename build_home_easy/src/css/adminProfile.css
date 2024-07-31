@@ -3,8 +3,12 @@
   justify-content: center;
   align-items: center;
   height: 90vh;
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
   padding: 20px;
+  /* background-image: linear-gradient(rgba(105, 94, 94, 0.5), rgba(75, 67, 67, 0.5)), url(/assests/admin-king-logo.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center; */
 }
 
 .profile-card {

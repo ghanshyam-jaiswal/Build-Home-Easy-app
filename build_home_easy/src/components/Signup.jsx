@@ -121,7 +121,7 @@ const Signup = () => {
 
             <div className="signup-contact">
               <label htmlFor="contact">Contact</label><br/><br/>
-              <input type="tel" id="contact" placeholder='Enter Number' pattern="[0-9]{10}"  value={userDetails.contact} onChange={e=>setUserDetails({...userDetails,contact:e.target.value})} />
+              <input type="text" id="contact" placeholder='Enter Number' maxLength="10" minLength="10"  pattern="\d{10}"  inputMode="numeric" value={userDetails.contact} onChange={e=>setUserDetails({...userDetails,contact:e.target.value})} />
             </div>
 
             <div className="signup-address">
@@ -138,7 +138,6 @@ const Signup = () => {
               {/* <input type="submit" value={'Sign up'} style={{backgroundColor:'rgb(81, 81, 222)',color:'white'}}/> */}
               <button onClick={handleSubmit}>Sign up</button>
             </div>
-            
           </div>
         </form>
         
