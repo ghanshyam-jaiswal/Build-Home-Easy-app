@@ -18,9 +18,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
 			responseData resData = new responseData();
 
 			string connectionString = "server=210.210.210.50;user=test_user;password=test*123;port=2020;database=pc_student;";
-			string gmailUsername = "rahulkumarnishad810@gmail.com"; // My Gmail address
-			// string gmailUsername = "ghanshyamjaiswal7000@gmail.com"; // My Gmail address
-			string gmailPassword = "vyow ekml apot syum"; // My Gmail password
+			string gmailUsername = "chulbulpanday7000@gmail.com"; // My Gmail address
+			string gmailPassword = "zyxi oylt nmfa lblj"; // My Gmail password
 
 			try
 			{
